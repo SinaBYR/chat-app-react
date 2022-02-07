@@ -3,7 +3,7 @@ import styled, { css } from "styled-components"
 
 type StyledProps = {
   bgColor: 'orange' | 'black' | 'white';
-  color: 'orange' | 'black' | 'white';
+  foreColor: 'orange' | 'black' | 'white';
   fullWidth?: boolean
 }
 
@@ -14,7 +14,7 @@ const ButtonStyled = styled.button<StyledProps>`
   ${({ fullWidth }) => fullWidth && css`
     width: 100%;
   `}
-  color: ${({theme, color}) => theme.colors[color]};
+  color: ${({theme, foreColor}) => theme.colors[foreColor]};
   background-color: ${({theme, bgColor}) => theme.colors[bgColor]};
   font-size: 1.25rem;
   padding: 0.75rem 1rem;
