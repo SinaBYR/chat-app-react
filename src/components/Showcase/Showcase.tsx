@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Auth } from "./Auth/Auth"
 import { Landing } from "./Landing/Landing"
 
 const Wrapper = styled.main`
@@ -12,7 +13,7 @@ export function Showcase() {
   return (
     <Wrapper>
       <Landing />
-      {/* <Landing /> */}
+      <Auth />
     </Wrapper>
   )
 }
