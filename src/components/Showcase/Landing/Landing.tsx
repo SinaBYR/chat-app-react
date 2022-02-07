@@ -14,6 +14,7 @@ const vibration = keyframes`
 const Wrapper = styled.section`
   position: relative;
   display: flex;
+  color: ${(props) => props.theme.colors.orange};
   animation: ${vibration} 2000ms alternate ease-in-out infinite;
 `
 
