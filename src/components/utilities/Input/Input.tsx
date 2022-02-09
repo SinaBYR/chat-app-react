@@ -19,17 +19,29 @@ const Label = styled.label`
   pointer-events: none;
 `
 
-const InputStyled = styled.input<{ fullWidth?: boolean }>`
+const Error = styled.p`
+  position: absolute;
+  right: 0;
+  bottom: -59%;
+  padding: 0px 10px 4px 10px;
+  color: red;
+  background-color: ${(props) => props.theme.colors.white};
+  border-bottom-left-radius: 30px;
+  border: 1px solid red;
+  border-top: none;
+`
+
+const InputStyled = styled.input<{ fullWidth?: boolean; isError: boolean }>`
   display: block;
   ${({ fullWidth }) => fullWidth && css`
     width: 100%;
   `}
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   padding: 0.5rem 0.75rem;
   background-color: #f7f7f7;
   background-color: ${(props) => props.theme.colors.white};
   color: ${(props) => props.theme.colors.black};
-  border: none;
+  border: ${({ isError }) => isError ? '1px solid red' : 'none'};
   transition: margin-top 400ms;
 
   &:focus, :not(&:placeholder-shown) {
@@ -48,13 +60,15 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   name: string;
   fullWidth?: boolean;
+  error?: string | null;
 }
 
-export function Input({ label, name, fullWidth, ...rest }: InputProps) {
+export function Input({ label, name, error, fullWidth, ...rest }: InputProps) {
   return (
     <Wrapper>
-      <InputStyled fullWidth={fullWidth} id={name} {...rest}/>
+      <InputStyled fullWidth={fullWidth} name={name} id={name} {...rest} isError={error !== null}/>
       <Label htmlFor={name}>{label}</Label>
+      {error && <Error>{error}</Error>}
     </Wrapper>
   )
 }
