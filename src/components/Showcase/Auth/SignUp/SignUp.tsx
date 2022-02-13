@@ -13,7 +13,11 @@ const Heading = styled.h2`
   text-align: center;
 `
 
-export function SignUp() {
+interface SignUpProps {
+  loading: boolean
+}
+
+export function SignUp({ loading } : SignUpProps) {
   const initialValues = {
     email: '',
     password: '',
@@ -84,7 +88,7 @@ export function SignUp() {
         placeholder=' '
       />
       <br />
-      <Button type='submit' bgColor='orange' foreColor='black' fullWidth >Sign up</Button>
+      <Button type='submit' bgColor='orange' foreColor='black' fullWidth>{loading ? 'Loading' : 'Sign up'}</Button>
     </Form>
   )
 }
