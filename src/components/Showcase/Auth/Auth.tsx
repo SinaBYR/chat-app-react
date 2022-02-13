@@ -5,7 +5,7 @@ import { SignUp } from "./SignUp/SignUp";
 
 const Wrapper = styled.section`
   width: 400px;
-  height: 500px;
+  /* height: 500px; */
   padding: 1rem;
   box-shadow: 0 0 16px #0f0f11;
   border-radius: 5px;
@@ -43,14 +43,40 @@ const Break = styled.div`
   }
 `
 
+const Footer = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  margin-top: 1rem;
+  text-align: center;
+
+  & button {
+    color: ${({ theme }) => theme.colors.orange};
+    background-color: unset;
+    font-size: 1rem;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`
+
 export function Auth() {
   const [page, setPage] = useState<'signup' | 'signin'>('signup');
+
+  function pageChangeHandler() {
+    if(page === 'signup') {
+      return setPage('signin')
+    }
+
+    setPage('signup')
+  }
+
   return (
     <Wrapper>
       <Button bgColor="orange" foreColor="black" fullWidth>Sign in as a guest</Button>
       <Break />
       {page === 'signup' ? <SignUp /> : 'Sign in'}
-      {/* <Button bgColor="orange" foreColor="black" fullWidth style={{marginTop: '1.5rem'}}>Register</Button> */}
+      <Footer>
+        Already got an account? <button onClick={pageChangeHandler}>Sign in</button>
+      </Footer>
     </Wrapper>
   )
 }
