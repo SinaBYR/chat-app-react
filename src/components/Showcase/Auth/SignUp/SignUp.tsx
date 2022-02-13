@@ -64,7 +64,7 @@ export function SignUp({ loading } : SignUpProps) {
         type='email'
         label='Email'
         name='email'
-        data-testid='email'
+        data-testid='signup-email'
         value={values.email}
         error={touched.email && errors.email ? errors.email : null}
         onChange={handleChange}
@@ -77,7 +77,7 @@ export function SignUp({ loading } : SignUpProps) {
         type='password'
         label='Password'
         name='password'
-        data-testid='password'
+        data-testid='signup-password'
         value={values.password}
         error={touched.password && errors.password ? errors.password : null}
         onChange={handleChange}
@@ -90,7 +90,7 @@ export function SignUp({ loading } : SignUpProps) {
         type='password'
         label='Confirm password'
         name='confirm'
-        data-testid='confirm'
+        data-testid='signup-confirm'
         value={values.confirm}
         error={touched.confirm && errors.confirm ? errors.confirm : null}
         onChange={handleChange}

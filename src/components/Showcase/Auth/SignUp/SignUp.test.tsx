@@ -13,7 +13,7 @@ test('renders labels and inputs', () => {
 
 test('email input', () => {
   render(<ThemeProvider><SignUp loading={false}/></ThemeProvider>)
-  const input = screen.getByTestId('email')
+  const input = screen.getByTestId('signup-email')
 
   expect(input).toHaveAttribute('type', 'email')
   expect(input).toHaveAttribute('name', 'email')
@@ -22,7 +22,7 @@ test('email input', () => {
 
 test('password input', () => {
   render(<ThemeProvider><SignUp loading={false}/></ThemeProvider>)
-  const input = screen.getByTestId('password')
+  const input = screen.getByTestId('signup-password')
 
   expect(input).toHaveAttribute('type', 'password')
   expect(input).toHaveAttribute('name', 'password')
@@ -31,7 +31,7 @@ test('password input', () => {
 
 test('confirm input', () => {
   render(<ThemeProvider><SignUp loading={false}/></ThemeProvider>)
-  const input = screen.getByTestId('confirm')
+  const input = screen.getByTestId('signup-confirm')
   
   expect(input).toHaveAttribute('type', 'password')
   expect(input).toHaveAttribute('name', 'confirm')

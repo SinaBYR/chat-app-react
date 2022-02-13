@@ -11,6 +11,7 @@ const animation = keyframes`
     transform: translateX(0);
   }
 `
+
 const Form = styled.form`
   display: block;
   animation: ${animation} 350ms;
@@ -53,7 +54,7 @@ export function SignIn({ loading } : SignInProps) {
         type='email'
         label='Email'
         name='email'
-        data-testid='email'
+        data-testid='signin-email'
         value={values.email}
         error={touched.email && errors.email ? errors.email : null}
         onChange={handleChange}
@@ -63,10 +64,10 @@ export function SignIn({ loading } : SignInProps) {
       <br />
       <Input
         fullWidth
-        type='text'
+        type='password'
         label='Password'
         name='password'
-        data-testid='password'
+        data-testid='signin-password'
         value={values.password}
         error={touched.password && errors.password ? errors.password : null}
         onChange={handleChange}
