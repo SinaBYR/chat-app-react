@@ -13,24 +13,6 @@ const Heading = styled.h2`
   text-align: center;
 `
 
-export interface SignupFormData {
-  email: {
-    touched: boolean;
-    error: string;
-    value: string;
-  }
-  password: {
-    touched: boolean;
-    error: string;
-    value: string;
-  }
-  confirm: {
-    touched: boolean;
-    error: string;
-    value: string;
-  }
-}
-
 export function SignUp() {
   const initialValues = {
     email: '',
@@ -92,7 +74,7 @@ export function SignUp() {
       <Input
         fullWidth
         type='password'
-        label='Password Confirm'
+        label='Confirm password'
         name='confirm'
         data-testid='confirm'
         value={values.confirm}
