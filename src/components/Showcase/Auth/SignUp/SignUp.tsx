@@ -1,10 +1,20 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Button, Input } from '../../../utilities'
 import { useFormik } from 'formik'
 import * as yup  from 'yup'
 
+const animation = keyframes`
+  from {
+    transform: translateX(-10px);
+  }
+  to {
+    transform: translateX(0);
+  }
+`
+
 const Form = styled.form`
   display: block;
+  animation: ${animation} 350ms;
 `
 
 const Heading = styled.h2`
