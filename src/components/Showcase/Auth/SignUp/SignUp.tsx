@@ -23,35 +23,44 @@ const Heading = styled.h2`
   text-align: center;
 `
 
-interface SignUpProps {
-  loading: boolean
+const SignupSchema = yup.object().shape({
+  email: yup
+    .string().email('Email address is not valid').required('Email is a required field'),
+  password: yup
+    .string().required('Password is a required field')
+    .min(8, 'Password should be 8 chars minimum')
+    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters'),
+  confirm: yup
+    .string().required('Password confirmation is a required field')
+    .test('password-match', 'Passwords must match', function(value) {
+      return this.parent.password === value
+    })
+})
+
+export interface SignupFormData {
+  email: string
+  password: string
+  confirm: string
 }
 
-export function SignUp({ loading } : SignUpProps) {
-  const initialValues = {
+interface SignUpProps {
+  loading: boolean
+  submit?: (values: SignupFormData) => void
+}
+
+export function SignUp({ loading, submit } : SignUpProps) {
+  const initialValues: SignupFormData = {
     email: '',
     password: '',
     confirm: ''
   }
 
-  const SignupSchema = yup.object().shape({
-    email: yup
-      .string().email('Email address is not valid').required('Email is a required field'),
-    password: yup
-      .string().required('Password is a required field')
-      .min(8, 'Password should be 8 chars minimum')
-      .matches(/[a-zA-Z]/, 'Password can only contain Latin letters'),
-    confirm: yup
-      .string().required('Password confirmation is a required field')
-      .test('password-match', 'Passwords must match', function(value) {
-        return this.parent.password === value
-      })
-  })
-
-  const { handleSubmit, handleChange, handleBlur, values, errors, touched } = useFormik({
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched, isValid } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, actions) => {
-      console.log(values)
+      if(submit) {
+        submit(values)
+      }
     },
     validationSchema: SignupSchema
   })
@@ -98,7 +107,12 @@ export function SignUp({ loading } : SignUpProps) {
         placeholder=' '
       />
       <br />
-      <Button type='submit' bgColor='orange' foreColor='black' fullWidth>{loading ? 'Loading' : 'Sign up'}</Button>
+      <Button
+        type='submit'
+        bgColor='orange'
+        foreColor='black'
+        fullWidth
+        disabled={!isValid}>{loading ? 'Loading' : 'Sign up'}</Button>
     </Form>
   )
 }
