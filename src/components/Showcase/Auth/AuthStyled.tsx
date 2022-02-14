@@ -6,6 +6,22 @@ export const Wrapper = styled.section`
   padding: 1rem;
   box-shadow: 0 0 16px #0f0f11;
   border-radius: 5px;
+  
+  @media (max-width: 30em) {
+    width: 95%;
+    height: 80vh;
+    margin: 1rem;
+  }
+
+  @media (max-width: 30em) {
+    width: 95%;
+    height: 80vh;
+    margin: 1rem;
+  }
+
+  @media (orientation: landscape) {
+    margin-bottom: 1rem;
+  }
 `
 
 export const Break = styled.div`
