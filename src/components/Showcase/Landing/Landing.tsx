@@ -23,6 +23,13 @@ const Wrapper = styled.section`
     justify-content: center;
     animation: unset;
   }
+
+  @media (orientation: landscape) {
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    animation: unset;
+  }
 `
 
 const ChatLogo = styled(BsChatLeftQuoteFill)`
@@ -30,6 +37,13 @@ const ChatLogo = styled(BsChatLeftQuoteFill)`
   height: 180px;
 
   @media (max-width: 30em) {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    margin: 0 auto;
+  }
+
+  @media (orientation: landscape) {
     width: 100px;
     height: 100px;
     max-width: 100px;
@@ -44,6 +58,11 @@ const TextWrapper = styled.div`
     margin-left: 0;
     text-align: center;
   }
+
+  @media (orientation: landscape) {
+    margin-left: 0;
+    text-align: center;
+  }
 `
 
 const Heading = styled.h1`
@@ -51,6 +70,10 @@ const Heading = styled.h1`
   margin-bottom: 8px;
 
   @media (max-width: 30em) {
+    font-size: 3rem;
+  }
+
+  @media (orientation: landscape) {
     font-size: 3rem;
   }
 `
@@ -71,12 +94,13 @@ const MobileOnlyScrollDownAnimation = keyframes`
 
 const MobileOnlyScrollDown = styled.div`
   display: none;
+  
   @media (max-width: 30em) {
     display: block;
     font-size: 2rem;
     margin-top: 2rem;
     text-align: center;
-    animation: ${MobileOnlyScrollDownAnimation} 5000ms infinite;
+    animation: ${MobileOnlyScrollDownAnimation} 3000ms infinite;
   }
 `
 
