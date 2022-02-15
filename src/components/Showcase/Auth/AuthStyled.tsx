@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.section`
   width: 400px;
-  /* height: 500px; */
   padding: 1rem;
   box-shadow: 0 0 16px #0f0f11;
   border-radius: 5px;
@@ -12,14 +11,8 @@ export const Wrapper = styled.section`
     height: 80vh;
     margin: 1rem;
   }
-
-  @media (max-width: 30em) {
-    width: 95%;
-    height: 80vh;
-    margin: 1rem;
-  }
-
-  @media (orientation: landscape) {
+  
+  @media (orientation: landscape) and (max-height: 30em) {
     margin-bottom: 1rem;
   }
 `

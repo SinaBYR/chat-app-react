@@ -24,7 +24,7 @@ const Wrapper = styled.section`
     animation: unset;
   }
 
-  @media (orientation: landscape) {
+  @media (orientation: landscape) and (max-height: 30em) {
     height: 100vh;
     flex-direction: column;
     justify-content: center;
@@ -43,7 +43,7 @@ const ChatLogo = styled(BsChatLeftQuoteFill)`
     margin: 0 auto;
   }
 
-  @media (orientation: landscape) {
+  @media (orientation: landscape) and (max-height: 30em) {
     width: 100px;
     height: 100px;
     max-width: 100px;
@@ -59,7 +59,7 @@ const TextWrapper = styled.div`
     text-align: center;
   }
 
-  @media (orientation: landscape) {
+  @media (orientation: landscape) and (max-height: 30em) {
     margin-left: 0;
     text-align: center;
   }
@@ -73,7 +73,7 @@ const Heading = styled.h1`
     font-size: 3rem;
   }
 
-  @media (orientation: landscape) {
+  @media (orientation: landscape) and (max-height: 30em) {
     font-size: 3rem;
   }
 `

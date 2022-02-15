@@ -12,7 +12,7 @@ const Wrapper = styled.main`
     flex-direction: column;
   }
 
-  @media (orientation: landscape) {
+  @media (orientation: landscape) and (max-height: 30em) {
     flex-direction: column;
   }
 `
