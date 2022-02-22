@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Button } from '../../../utilities'
 
 const Wrapper = styled.ul`
-  display: flex;
+  display: none;
   /* background-color: purple; */
   width: 500px;
   list-style: none;
@@ -14,11 +14,14 @@ const Wrapper = styled.ul`
   }
 
   @media (max-width: 30em) {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `
 
-export function DesktopLinks() {
+export function MobileLinks() {
   return (
     <Wrapper>
       <li>
