@@ -2,7 +2,7 @@ import * as React from "react"
 import styled, { css } from "styled-components"
 
 type StyledProps = {
-  bgColor: 'orange' | 'black' | 'white';
+  bgColor: 'orange' | 'black' | 'white' | 'red';
   foreColor: 'orange' | 'black' | 'white';
   fullWidth?: boolean
 }
