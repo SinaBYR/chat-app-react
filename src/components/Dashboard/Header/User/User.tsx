@@ -1,18 +1,25 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { BsPersonSquare } from 'react-icons/bs'
 import { MdKeyboardArrowDown } from 'react-icons/md'
+import { Button } from '../../../utilities'
 
 const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 65%;
+`
+
+const Upper = styled.div`
   display: flex;
   align-items: center;
-  /* background-color: ${({ theme }) => theme.colors.black}; */
-  /* color: ${({ theme }) => theme.colors.orange}; */
-  border: 1px solid ${({ theme }) => theme.colors.black};
-  padding: 4px;
-  border-radius: 4px;
   width: 250px;
-  height: 65%;
+  height: 100%;
+  padding: 4px;
   margin-left: 16px;
+  border: 1px solid ${({ theme }) => theme.colors.black};
+  border-radius: 4px;
   cursor: pointer;
 
   @media (max-width: 30em) {
@@ -33,12 +40,43 @@ const ArrowDownIcon = styled(MdKeyboardArrowDown)`
   font-size: 24px;
 `
 
-export function User() {
+const Lower = styled.div`
+  position: absolute;
+  top: 95%;
+  left: 0;
+  width: calc(100% - 16px);
+  background-color: ${({ theme }) => theme.colors.orange};
+  padding: 1rem;
+  margin-left: 16px;
+  border: 1px solid ${({ theme }) => theme.colors.black};
+  border-top: 0;
+
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+`
+
+interface Props {
+  extended: boolean
+  toggleDropdown: () => void
+}
+
+export function User({ extended, toggleDropdown } : Props) {
   return (
-    <Wrapper>
-      <PersonIcon />
-      <Heading>Username</Heading>
-      <ArrowDownIcon />
+    <Wrapper onClick={toggleDropdown}>
+      <Upper>
+        <PersonIcon />
+        <Heading>Username</Heading>
+        <ArrowDownIcon />
+      </Upper>
+      {
+        extended && (
+        <Lower>
+          <Button style={{border: '1px solid #1A1C20'}} bgColor="orange" foreColor="black" fullWidth>Profile</Button>
+          <Button bgColor="red" foreColor="white" fullWidth>Logout</Button>
+        </Lower>
+        )
+      }
     </Wrapper>
   )
 }
