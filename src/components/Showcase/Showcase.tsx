@@ -7,7 +7,7 @@ const Wrapper = styled.main`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  margin-top: auto;
+  /* margin-top: auto; */
 
   @media (max-width: 30em) {
     flex-direction: column;
