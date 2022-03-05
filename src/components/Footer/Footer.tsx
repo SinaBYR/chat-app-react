@@ -2,9 +2,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.footer`
   color: ${({ theme }) => theme.colors.orange};
-  /* border: 1px solid red; */
-  padding: 1rem;
-  margin-top: auto;
+  padding-bottom: 1rem;
   text-align: center;
 `
 
