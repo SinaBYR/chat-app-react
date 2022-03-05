@@ -1,65 +1,13 @@
+import { Wrapper, Break, Footer } from './AuthStyled'
 import { useState } from "react"
-import styled from "styled-components"
-import { Button } from "../../utilities";
-import { SignUp } from "./SignUp/SignUp";
-
-const Wrapper = styled.section`
-  width: 400px;
-  /* height: 500px; */
-  padding: 1rem;
-  box-shadow: 0 0 16px #0f0f11;
-  border-radius: 5px;
-`
-
-const Break = styled.div`
-  position: relative;
-  width: 100%;
-  height: 20px;
-  margin: 2rem 0;
-  z-index: 0;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 5%;
-    background-color: ${(props) => props.theme.colors.orange};
-    z-index: -1;
-  }
-
-  &::after {
-    content: 'or';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: ${(props) => props.theme.colors.orange};
-    background-color: ${(props) => props.theme.colors.black};
-    padding: 16px;
-    font-size: 1.5rem;
-  }
-`
-
-const Footer = styled.div`
-  color: ${({ theme }) => theme.colors.white};
-  margin-top: 1rem;
-  text-align: center;
-
-  & button {
-    color: ${({ theme }) => theme.colors.orange};
-    background-color: unset;
-    font-size: 1rem;
-    border: none;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-`
+import { Button } from "../../utilities"
+import { SignIn } from "./SignIn/SignIn"
+import { SignUp, SignupFormData } from "./SignUp/SignUp"
+import { SigninFormData } from './SignIn/SignIn'
 
 export function Auth() {
-  const [page, setPage] = useState<'signup' | 'signin'>('signup');
+  const [page, setPage] = useState<'signup' | 'signin'>('signup')
+  const [loading, setLoading] = useState<boolean>(false)
 
   function pageChangeHandler() {
     if(page === 'signup') {
@@ -69,13 +17,23 @@ export function Auth() {
     setPage('signup')
   }
 
+  function SignupHandler(values: SignupFormData) {
+    setLoading(true)
+    console.log('signed up: ', values)
+  }
+
+  function SigninHandler(values: SigninFormData) {
+    setLoading(true)
+    console.log('signed in: ', values)
+  }
+
   return (
     <Wrapper>
       <Button bgColor="orange" foreColor="black" fullWidth>Sign in as a guest</Button>
       <Break />
-      {page === 'signup' ? <SignUp /> : 'Sign in'}
+      {page === 'signup' ? <SignUp submit={SignupHandler} loading={loading}/> : <SignIn submit={SigninHandler} loading={loading}/>}
       <Footer>
-        Already got an account? <button onClick={pageChangeHandler}>Sign in</button>
+        {page === 'signup' ? 'Already got an account?' : "Don't have an account?"} <button onClick={pageChangeHandler}>{page === 'signup' ? 'Sign in' : 'Sign up'}</button>
       </Footer>
     </Wrapper>
   )
