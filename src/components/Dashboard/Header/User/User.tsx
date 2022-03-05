@@ -14,11 +14,12 @@ const Wrapper = styled.div`
   z-index: 1;
 `
 
-const Upper = styled.div`
+const Upper = styled.button`
   display: flex;
   align-items: center;
   width: 250px;
   height: 100%;
+  background-color: ${({ theme }) => theme.colors.orange};
   padding: 4px;
   margin-left: 16px;
   border: 1px solid ${({ theme }) => theme.colors.black};
