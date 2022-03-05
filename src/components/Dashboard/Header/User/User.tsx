@@ -1,9 +1,8 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { BsPersonSquare } from 'react-icons/bs'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { Button } from '../../../utilities'
 import { MobileLinks } from '../Links/MobileLinks'
-import { DesktopLinks } from '../Links/DesktopLinks'
 
 const Wrapper = styled.div`
   position: relative;
@@ -20,7 +19,7 @@ const Upper = styled.button`
   width: 250px;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.orange};
-  padding: 4px;
+  padding: 4px 1rem;
   margin-left: 16px;
   border: 1px solid ${({ theme }) => theme.colors.black};
   border-radius: 4px;
