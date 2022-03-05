@@ -53,6 +53,8 @@ const Lower = styled.div`
   margin-left: 16px;
   border: 1px solid ${({ theme }) => theme.colors.black};
   border-top: 0;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 
   & > *:not(:last-child) {
     margin-bottom: 1rem;
