@@ -1,16 +1,12 @@
 import styled from 'styled-components'
 import { Button } from '../../../utilities'
 
-const Wrapper = styled.ul`
+const Wrapper = styled.div`
   display: none;
-  /* background-color: purple; */
-  width: 500px;
-  list-style: none;
-  justify-content: end;
-  margin-left: auto;
+  width: 100%;
 
-  & > li {
-    margin-right: 1rem;
+  & > *:first-child {
+    margin-bottom: 1rem;
   }
 
   @media (max-width: 30em) {
@@ -24,12 +20,8 @@ const Wrapper = styled.ul`
 export function MobileLinks() {
   return (
     <Wrapper>
-      <li>
-        <Button bgColor="black" foreColor="orange">Create</Button>
-      </li>
-      <li>
-        <Button bgColor="black" foreColor="orange">Channels</Button>
-      </li>
+      <Button bgColor="orange" style={{border: '1px solid #1A1C20'}} foreColor="black" fullWidth>Create</Button>
+      <Button bgColor="orange" style={{border: '1px solid #1A1C20'}} foreColor="black" fullWidth>Channels</Button>
     </Wrapper>
   )
 }
