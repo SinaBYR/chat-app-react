@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components'
 import { BsPersonSquare } from 'react-icons/bs'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { Button } from '../../../utilities'
+import { MobileLinks } from '../Links/MobileLinks'
+import { DesktopLinks } from '../Links/DesktopLinks'
 
 const Wrapper = styled.div`
   position: relative;
@@ -9,6 +11,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 65%;
+  z-index: 1;
 `
 
 const Upper = styled.div`
@@ -63,8 +66,8 @@ interface Props {
 
 export function User({ extended, toggleDropdown } : Props) {
   return (
-    <Wrapper onClick={toggleDropdown}>
-      <Upper>
+    <Wrapper>
+      <Upper onClick={toggleDropdown}>
         <PersonIcon />
         <Heading>Username</Heading>
         <ArrowDownIcon />
@@ -72,6 +75,7 @@ export function User({ extended, toggleDropdown } : Props) {
       {
         extended && (
         <Lower>
+          <MobileLinks />
           <Button style={{border: '1px solid #1A1C20'}} bgColor="orange" foreColor="black" fullWidth>Profile</Button>
           <Button bgColor="red" foreColor="white" fullWidth>Logout</Button>
         </Lower>
