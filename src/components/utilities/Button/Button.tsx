@@ -16,12 +16,11 @@ const ButtonStyled = styled.button<StyledProps>`
   `}
   color: ${({theme, foreColor}) => theme.colors[foreColor]};
   background-color: ${({theme, bgColor}) => theme.colors[bgColor]};
-  font-size: 1.25rem;
-  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  padding: 0.65rem 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
   cursor: pointer;
-  transition: transform 400ms;
 
   &:active {
     transform: scale(0.97);
