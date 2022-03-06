@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   justify-content: center;
   height: 65%;
   z-index: 1;
+
+  @media (max-width: 30em) {
+    display: none;
+  }
 `
 
 export const Upper = styled.button`
