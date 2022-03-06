@@ -19,7 +19,6 @@ const Upper = styled.button`
   width: 250px;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.orange};
-  padding: 4px 1rem;
   margin-left: 16px;
   border: 1px solid ${({ theme }) => theme.colors.black};
   border-radius: 4px;
@@ -27,19 +26,28 @@ const Upper = styled.button`
 
   @media (max-width: 30em) {
     width: auto;
+    width: 200px;
   }
 `
 
 const PersonIcon = styled(BsPersonSquare)`
   width: 25px;
   height: 25px;
-  margin-right: 8px;
+  font-size: 8rem;
+  margin-left: 4px;
 `
 
-const Heading = styled.h3``
+const Username = styled.h3`
+  margin-left: 8px;
+  margin-right: auto;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 70%;
+`
 
 const ArrowDownIcon = styled(MdKeyboardArrowDown)`
-  margin-left: auto;
   font-size: 24px;
 `
 
@@ -49,7 +57,7 @@ const Lower = styled.div`
   left: 0;
   width: calc(100% - 16px);
   background-color: ${({ theme }) => theme.colors.orange};
-  padding: 1rem;
+  padding: 0.5rem;
   margin-left: 16px;
   border: 1px solid ${({ theme }) => theme.colors.black};
   border-top: 0;
@@ -57,7 +65,7 @@ const Lower = styled.div`
   border-bottom-left-radius: 4px;
 
   & > *:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 `
 
@@ -71,7 +79,8 @@ export function User({ extended, toggleDropdown } : Props) {
     <Wrapper>
       <Upper onClick={toggleDropdown}>
         <PersonIcon />
-        <Heading>Username</Heading>
+        {/* <Username>ThisIsTheKingdomCome</Username> */}
+        <Username>Username</Username>
         <ArrowDownIcon />
       </Upper>
       {
