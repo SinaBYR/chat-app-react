@@ -20,6 +20,7 @@ export const Upper = styled.button`
   align-items: center;
   width: 250px;
   height: 100%;
+  color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.orange};
   margin-left: 16px;
   border: 1px solid ${({ theme }) => theme.colors.black};
