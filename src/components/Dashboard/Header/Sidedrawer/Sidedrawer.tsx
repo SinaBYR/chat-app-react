@@ -1,9 +1,17 @@
 import styled, { keyframes } from 'styled-components'
 import { FaUserCircle } from 'react-icons/fa'
-import { IoIosCreate } from 'react-icons/io'
 import { IoCreateOutline } from 'react-icons/io5'
 import { MdTravelExplore, MdLogout } from 'react-icons/md'
 import { CgProfile } from 'react-icons/cg'
+
+const Animation = keyframes`
+  from {
+    transform: translateX(250px);
+  }
+  to {
+    transform: translateX(0);
+  }
+`
 
 const Wrapper = styled.div`
   position: absolute;
@@ -13,12 +21,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 250px;
   height: 100%;
-  z-index: 1;
-  /* border: 1px solid ${({ theme }) => theme.colors.black}; */
-  /* padding: 1rem; */
+  z-index: 2;
   background-color: ${({ theme }) => theme.colors.black};
-  /* color: ${({ theme }) => theme.colors.orange}; */
-  /* box-shadow: 0 0 8px 4px #15171a; */
+  animation: ${Animation} 400ms ease-in-out forwards;
 `
 
 const Header = styled.header`
@@ -42,7 +47,6 @@ const Username = styled.h4``
 const Main = styled.main`
   height: 100%;
   width: 100%;
-  /* background-color: red; */
 `
 
 const Button = styled.button`
@@ -63,8 +67,6 @@ const Button = styled.button`
   text-align: left;
   
   &:active {
-    /* opacity: 0.8; */
-    background-color: #e00000;
     background-color: #1f2227;
   }
 `
