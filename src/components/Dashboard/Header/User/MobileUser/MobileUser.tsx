@@ -1,5 +1,5 @@
-import { BsPersonSquare } from 'react-icons/bs'
 import styled from 'styled-components'
+import { BsPersonSquare } from 'react-icons/bs'
 
 const Wrapper = styled.button`
   display: none;
@@ -21,9 +21,13 @@ const PersonIcon = styled(BsPersonSquare)`
   font-size: 8rem;
 ` 
 
-export function MobileUser() {
+interface Props {
+  openSidedrawer: () => void
+}
+
+export function MobileUser({ openSidedrawer }: Props) {
   return (
-    <Wrapper>
+    <Wrapper onClick={openSidedrawer}>
       <PersonIcon />
     </Wrapper>
   )
