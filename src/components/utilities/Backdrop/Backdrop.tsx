@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -11,24 +10,12 @@ const Wrapper = styled.div`
   z-index: 1;
 `
 
-const Content = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
 interface Props {
-  children?: React.ReactNode
   onClose: () => void
 }
 
-export function Backdrop ({ children, onClose }: Props) {
+export function Backdrop ({ onClose }: Props) {
   return (
-    <Wrapper onClick={onClose}>
-      {/* <Content>{children}</Content> */}
-    </Wrapper>
+    <Wrapper onClick={onClose}></Wrapper>
   )
 }
