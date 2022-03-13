@@ -1,8 +1,11 @@
 import styled from 'styled-components'
-import { DesktopLinks } from './Links/DesktopLinks'
-import { User } from './User/User'
-import { Logo } from './Logo/Logo'
 import { useState } from 'react'
+import { DesktopLinks } from './Links/DesktopLinks'
+import { DesktopUser } from './User/DesktopUser/DesktopUser'
+import { Logo } from './Logo/Logo'
+import { MobileUser } from './User/MobileUser/MobileUser'
+import { Sidedrawer } from './Sidedrawer/Sidedrawer'
+import { Backdrop } from '../../utilities/Backdrop/Backdrop'
 
 const Wrapper = styled.header`
   display: flex;
@@ -16,13 +19,23 @@ const Wrapper = styled.header`
 `
 
 export function Header() {
-  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false)
+  const [isDesktopUserExtended, setIsDesktopUserExtended] = useState<boolean>(false)
+  const [isSidedrawerOpen, setIsSidedrawerOpen] = useState<boolean>(false)
 
   return (
     <Wrapper>
       <Logo />
       <DesktopLinks />
-      <User extended={isUserDropdownOpen} toggleDropdown={() => setIsUserDropdownOpen(!isUserDropdownOpen)}/>
+      <DesktopUser extended={isDesktopUserExtended} toggleDropdown={() => setIsDesktopUserExtended(!isDesktopUserExtended)} />
+      <MobileUser openSidedrawer={() => setIsSidedrawerOpen(true)}/>
+      {
+        isSidedrawerOpen && (
+          <>
+            <Sidedrawer />
+            <Backdrop onClose={() => setIsSidedrawerOpen(false)} />
+          </>
+        )
+      }
     </Wrapper>
   )
 }
