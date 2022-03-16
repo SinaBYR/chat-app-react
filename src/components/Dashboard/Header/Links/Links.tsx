@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button } from '../../../../utilities'
+import { Button } from '../../../utilities'
 
 const UnorderedList = styled.ul`
   display: flex;
@@ -18,7 +18,7 @@ const ListItem = styled.li`
   margin-right: 1rem;
 `
 
-export function DesktopLinks() {
+export function Links() {
   return (
     <UnorderedList>
       <ListItem>
