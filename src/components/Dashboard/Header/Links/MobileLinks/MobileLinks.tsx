@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { Button } from '../../../utilities'
+import { Button } from '../../../../utilities'
 
 const Wrapper = styled.div`
   display: none;
   width: 100%;
 
   & > *:first-child {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (max-width: 30em) {
