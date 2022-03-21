@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { DesktopLinks } from './Links/DesktopLinks'
+import { Links } from './Links/Links'
 import { DesktopUser } from './User/DesktopUser/DesktopUser'
 import { Logo } from './Logo/Logo'
 import { MobileUser } from './User/MobileUser/MobileUser'
@@ -25,7 +25,7 @@ export function Header() {
   return (
     <Wrapper>
       <Logo />
-      <DesktopLinks />
+      <Links />
       <DesktopUser extended={isDesktopUserExtended} toggleDropdown={() => setIsDesktopUserExtended(!isDesktopUserExtended)} />
       <MobileUser openSidedrawer={() => setIsSidedrawerOpen(true)}/>
       {
