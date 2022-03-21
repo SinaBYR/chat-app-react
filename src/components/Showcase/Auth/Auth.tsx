@@ -4,6 +4,7 @@ import { Button } from "../../utilities"
 import { SignIn } from "./SignIn/SignIn"
 import { SignUp, SignupFormData } from "./SignUp/SignUp"
 import { SigninFormData } from './SignIn/SignIn'
+import { supabase } from '../../../supabase/supabase'
 
 export function Auth() {
   const [page, setPage] = useState<'signup' | 'signin'>('signup')
@@ -17,9 +18,16 @@ export function Auth() {
     setPage('signup')
   }
 
-  function SignupHandler(values: SignupFormData) {
+  async function SignupHandler(values: SignupFormData) {
     setLoading(true)
-    console.log('signed up: ', values)
+    try {
+      await supabase.auth.signUp({ email: values.email, password: values.password })
+    } catch(err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
+      // console.log('signed up: ', values)
+    }
   }
 
   function SigninHandler(values: SigninFormData) {
