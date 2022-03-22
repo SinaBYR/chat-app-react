@@ -1,5 +1,5 @@
-import { InitialState } from '../../types/types'
-import { ActionTypes } from '../actions/actions'
+import { InitialState } from './types'
+import { ActionTypes } from './actions'
 
 const initialState: InitialState = {
   session: null
