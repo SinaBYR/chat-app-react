@@ -6,11 +6,23 @@ export const authInitialState: AuthInitialState = {
 }
 
 export function authReducer(state: AuthInitialState = authInitialState, action: AuthActionTypes): AuthInitialState  {
-  if(action.type === 'SIGN_IN') {
-    return {
-      ...state,
-      session: action.payload
+  switch (action.type) {
+    case 'SIGN_IN': {
+      return {
+        ...state,
+        session: action.payload
+      }
     }
+  
+    case 'SIGN_OUT': {
+      return {
+        ...state,
+        session: null
+      }
+    }
+  
+    default:
+      break;
   }
 
   return state
