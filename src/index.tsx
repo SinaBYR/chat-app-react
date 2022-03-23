@@ -4,12 +4,15 @@ import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { ThemeProvider } from './theme/ThemeProvider';
+import { AppContextProvider } from './store/context'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <AppContextProvider>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </AppContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

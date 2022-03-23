@@ -23,7 +23,7 @@ const mainReducer = ({ auth }: InitialState, action: ActionTypes) => ({
 const DispatchContext = createContext<React.Dispatch<ActionTypes>>(() => null)
 const StateContext = createContext<InitialState | null>(null)
 
-export const ContextProvider: React.FC = ({ children }) => {
+export const AppContextProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState)
 
   return (
