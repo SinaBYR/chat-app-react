@@ -1,4 +1,4 @@
 import { Session } from "@supabase/supabase-js";
 
-export type ActionTypes = 
+export type AuthActionTypes = 
   | { type: 'SIGN_IN', payload: Session }

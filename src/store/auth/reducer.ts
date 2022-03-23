@@ -1,11 +1,11 @@
-import { InitialState } from './types'
-import { ActionTypes } from './actions'
+import { AuthInitialState } from './types'
+import { AuthActionTypes } from './actions'
 
-const initialState: InitialState = {
+export const authInitialState: AuthInitialState = {
   session: null
 }
 
-export function authReducer(state: InitialState = initialState, action: ActionTypes): InitialState  {
+export function authReducer(state: AuthInitialState = authInitialState, action: AuthActionTypes): AuthInitialState  {
   if(action.type === 'SIGN_IN') {
     return {
       ...state,

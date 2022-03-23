@@ -1,5 +1,5 @@
 import { Session } from '@supabase/supabase-js'
 
-export interface InitialState {
+export interface AuthInitialState {
   session: null | Session
 }
