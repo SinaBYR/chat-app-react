@@ -3,25 +3,22 @@ import { AuthActionTypes } from "./auth/actions";
 import { authInitialState, authReducer } from "./auth/reducer";
 import { AuthInitialState } from "./auth/types";
 
-interface InitialState {
+export interface InitialState {
   auth: AuthInitialState
 }
 
-interface ActionTypes {
-  auth: AuthActionTypes
-}
+type ActionTypes = AuthActionTypes
 
 const initialState: InitialState = {
   auth: authInitialState
 }
 
 const mainReducer = ({ auth }: InitialState, action: ActionTypes) => ({
-  auth: authReducer(auth, action.auth)
-  // shoppingCart: shoppingCartReducer(shoppingCart, action),
-});
+  auth: authReducer(auth, action as AuthActionTypes)
+})
 
-const DispatchContext = createContext<React.Dispatch<ActionTypes>>(() => null)
-const StateContext = createContext<InitialState | null>(null)
+export const DispatchContext = createContext<React.Dispatch<ActionTypes>>(() => null)
+export const StateContext = createContext<InitialState | null>(null)
 
 export const AppContextProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState)
