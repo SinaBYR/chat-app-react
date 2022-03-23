@@ -1,8 +1,8 @@
 import { Wrapper, Break, Footer } from './AuthStyled'
-import { useState } from "react"
-import { Button } from "../../utilities"
-import { SignIn } from "./SignIn/SignIn"
-import { SignUp, SignupFormData } from "./SignUp/SignUp"
+import { useState } from 'react'
+import { Button } from '../../utilities'
+import { SignIn } from './SignIn/SignIn'
+import { SignUp, SignupFormData } from './SignUp/SignUp'
 import { SigninFormData } from './SignIn/SignIn'
 import { supabase } from '../../../supabase/supabase'
 
@@ -19,20 +19,25 @@ export function Auth() {
   }
 
   async function SignupHandler(values: SignupFormData) {
-    setLoading(true)
     try {
+      setLoading(true)
       await supabase.auth.signUp({ email: values.email, password: values.password })
     } catch(err) {
       console.log(err)
     } finally {
       setLoading(false)
-      // console.log('signed up: ', values)
     }
   }
 
-  function SigninHandler(values: SigninFormData) {
-    setLoading(true)
-    console.log('signed in: ', values)
+  async function SigninHandler({ email, password }: SigninFormData) {
+    try {
+      setLoading(true)
+      await supabase.auth.signIn({ email, password })
+    } catch(err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
