@@ -1,11 +1,12 @@
-import { GoTrueClient, Session } from "@supabase/supabase-js"
-import { useEffect, useState } from "react"
 import styled from "styled-components"
+import { useContext, useEffect, useState } from "react"
 import { Dashboard } from "./components/Dashboard/Dashboard"
 import { Footer } from "./components/Footer/Footer"
 import { Showcase } from "./components/Showcase/Showcase"
+import { DispatchContext, StateContext } from "./store/context"
 import { supabase } from "./supabase/supabase"
-import { ThemeProvider } from "./theme/ThemeProvider"
+import { InitialState } from './store/context'
+import LoadingOverlay from 'react-loading-overlay-ts'
 
 const AppStyled = styled.div`
   display: grid;
@@ -21,22 +22,37 @@ const AppStyled = styled.div`
 `
 
 export function App() {
-  const [session, setSession] = useState<Session | null>(null)
-
+  const { auth } = useContext(StateContext) as InitialState
+  const dispatch = useContext(DispatchContext)
+  const [loading, setLoading] = useState<boolean>(true)
+  
   useEffect(() => {
-    setSession(supabase.auth.session())
-
+    dispatch({ type: 'SIGN_IN', payload: supabase.auth.session() })
+    
     supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
+      dispatch({ type: 'SIGN_IN', payload: session })
     })
+    setLoading(false)
   }, [])
 
-  console.log(session)
+  console.log(auth.session)
+
+  async function signoutHandler() {
+    try {
+      await supabase.auth.signOut()
+      dispatch({ type: 'SIGN_OUT' })
+    } catch(err) {
+      console.log(err)
+    }
+  }
 
   return (
-    <AppStyled>
-      {session ? <Dashboard /> : <Showcase />}
-      <Footer />
-    </AppStyled>
+    <LoadingOverlay active={loading} spinner>
+      <AppStyled>
+        {auth.session ? <Dashboard /> : <Showcase />}
+        <Footer />
+        <button onClick={signoutHandler}>Logout</button>
+      </AppStyled>
+    </LoadingOverlay>
   )
 }
