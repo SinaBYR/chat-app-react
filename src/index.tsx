@@ -7,13 +7,13 @@ import { ThemeProvider } from './theme/ThemeProvider';
 import { AppContextProvider } from './store/context'
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <AppContextProvider>
       <ThemeProvider>
         <App />
       </ThemeProvider>
-    </AppContextProvider>
-  </React.StrictMode>,
+    </AppContextProvider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
