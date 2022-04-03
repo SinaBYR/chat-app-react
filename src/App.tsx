@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { useContext, useEffect, useState } from "react"
 import { Dashboard } from "./components/Dashboard/Dashboard"
 import { Footer } from "./components/Footer/Footer"
-import { Showcase } from "./components/Showcase/Showcase"
+import { Landing } from "./components/Landing/Landing"
 import { DispatchContext, StateContext } from "./store/context"
 import { supabase } from "./supabase/supabase"
 import { InitialState } from './store/context'
@@ -49,7 +49,7 @@ export function App() {
   return (
     <LoadingOverlay active={loading} spinner>
       <AppStyled>
-        {auth.session ? <Dashboard /> : <Showcase />}
+        {auth.session ? <Dashboard /> : <Landing />}
         <Footer />
         <button onClick={signoutHandler}>Logout</button>
       </AppStyled>
