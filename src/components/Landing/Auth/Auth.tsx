@@ -21,7 +21,9 @@ export function Auth() {
   async function SignupHandler(values: SignupFormData) {
     try {
       setLoading(true)
-      await supabase.auth.signUp({ email: values.email, password: values.password })
+      const username = values.email.substring(0, values.email.indexOf('@'))
+      const res = await supabase.auth.signUp({ email: values.email, password: values.password }, { data: { username } })
+      console.log(res)
     } catch(err) {
       console.log(err)
     } finally {
