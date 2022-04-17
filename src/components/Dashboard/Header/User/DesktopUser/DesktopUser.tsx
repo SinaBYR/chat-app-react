@@ -1,7 +1,7 @@
 import { ArrowDownIcon, ArrowUpIcon, Lower, PersonIcon, Upper, Username, Wrapper } from './DesktopUserStyled'
 import { Button } from '../../../../utilities'
 import { supabase } from '../../../../../supabase/supabase'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { DispatchContext, InitialState, StateContext } from '../../../../../store/context'
 
 interface Props {
@@ -22,11 +22,15 @@ export function DesktopUser({ extended, toggleDropdown } : Props) {
     }
   }
 
+
+  const capitalizedUsername = auth.session?.user?.user_metadata.username.slice(0, 1).toUpperCase() + auth.session?.user?.user_metadata.username.slice(1)
+
   return (
     <Wrapper>
       <Upper onClick={toggleDropdown}>
         <PersonIcon />
-        <Username>ThisIsTheKingdomCome</Username>
+        {/* <Username>ThisIsTheKingdomCome</Username> */}
+        <Username>{capitalizedUsername}</Username>
         {extended ? <ArrowUpIcon /> : <ArrowDownIcon />}
       </Upper>
       {

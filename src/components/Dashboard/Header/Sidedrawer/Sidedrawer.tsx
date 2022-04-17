@@ -16,11 +16,13 @@ export function Sidedrawer() {
     }
   }
 
+  const capitalizedUsername = auth.session?.user?.user_metadata.username.slice(0, 1).toUpperCase() + auth.session?.user?.user_metadata.username.slice(1)
+
   return (
     <Wrapper>
       <Header>
         <UserIcon />
-        <Username>ThisIsKingdomeCome</Username>
+        <Username>{capitalizedUsername}</Username>
       </Header>
       <Main>
         <Button><CreateIcon /> Create</Button>
