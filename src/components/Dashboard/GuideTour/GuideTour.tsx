@@ -28,6 +28,7 @@ const StepOne = styled.div`
   padding: 1rem;
   box-shadow: 0 0 4px 4px black;
   text-align: center;
+  border-radius: 4px;
 `
 
 const Heading = styled.h2`
@@ -39,15 +40,54 @@ const Paragraph = styled.p`
   line-height: 1.4;
 `
 
+const StepThree = styled.div`
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  width: 300px;
+  height: calc(100% - 118px);
+  border: 2px solid white;
+  border-radius: 4px;
+`
+
+const StepThreeLine = styled.div`
+  position: absolute;
+  top: 200px;
+  left: 100%;
+  width: 200px;
+  height: 2px;
+  background-color: white;
+  `
+
+const StepThreeContent = styled.div`
+  position: absolute;
+  top: 150px;
+  left: calc(100% + 200px);
+  width: 400px;
+  /* height: 200px; */
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 0 4px 4px black;
+  border-radius: 4px;
+  line-height: 1.4;
+`
+
 export function GuideTour() {
   return (
     <Wrapper>
-      <StepOne>
+      {/* <StepOne>
         <Heading>Welcome to the Chat App</Heading>
-        {/* <Paragraph>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi natus similique minima doloribus voluptatum? Ad optio quo voluptate fugit quas perspiciatis!</Paragraph> */}
         <Paragraph>Hello there :) If you want to learn how this app works, consider taking this quick guide tour which important sections of the Chat App is explained and taught.</Paragraph>
         <Button bgColor="black" foreColor="orange">Take the tour</Button>
-      </StepOne>
+      </StepOne> */}
+      <StepThree>
+        <StepThreeLine></StepThreeLine>
+        <StepThreeContent>
+          {/* <h2>Channels</h2> */}
+          <h3>Channels you've joined will appear here. Hang out and spend your time with the people you want by selecting a channel.</h3>
+          <h2></h2>
+        </StepThreeContent>
+      </StepThree>
     </Wrapper>
   )
 }
