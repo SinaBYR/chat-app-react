@@ -138,7 +138,7 @@ const StepThreeLine = styled.div`
   width: 200px;
   height: 2px;
   background-color: white;
-  `
+`
 
 const StepThreeContent = styled.div`
   position: absolute;
@@ -146,6 +146,47 @@ const StepThreeContent = styled.div`
   left: calc(100% + 200px);
   width: 400px;
   /* height: 200px; */
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 0 4px 4px black;
+  border-radius: 4px;
+  line-height: 1.4;
+`
+
+const StepFour = styled.div`
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  width: 250px;
+  height: 46px;
+  border: 2px solid white;
+  border-radius: 4px;
+`
+
+const StepFourLine = styled.div`
+  position: absolute;
+  top: 42px;
+  left: 42px;
+  width: 2px;
+  height: 200px;
+  background-color: white;
+`
+
+const StepFourLineTwo = styled.div`
+  position: absolute;
+  top: 240px;
+  left: -156px;
+  width: 200px;
+  height: 2px;
+  background-color: white;
+`
+
+const StepFourContent = styled.div`
+  position: absolute;
+  top: 200px;
+  right: 150%;
+  width: 400px;
+  /* height: 00px; */
   background-color: white;
   padding: 1rem;
   box-shadow: 0 0 4px 4px black;
@@ -162,7 +203,7 @@ export function GuideTour() {
         <Button bgColor="black" foreColor="orange">Take the tour</Button>
       </StepOne> */}
 
-      <StepTwoExploreChannels>
+      {/* <StepTwoExploreChannels>
         <StepTwoExploreChannelsLine />
         <StepTwoExploreChannelsLineTwo />
         <StepTwoExploreChannelsContent>
@@ -176,7 +217,7 @@ export function GuideTour() {
         <StepTwoCreateContent>
           <h3>Create your own channels and invite people to join.</h3>
         </StepTwoCreateContent>
-      </StepTwoCreate>
+      </StepTwoCreate> */}
 
       {/* <StepThree>
         <StepThreeLine />
@@ -185,6 +226,14 @@ export function GuideTour() {
           <h2></h2>
         </StepThreeContent>
       </StepThree> */}
+
+      <StepFour>
+        <StepFourLine />
+        <StepFourLineTwo />
+        <StepFourContent>
+          <h3>See your profile here and update your account's information.</h3>
+        </StepFourContent>
+      </StepFour>
     </Wrapper>
   )
 }
