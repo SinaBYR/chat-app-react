@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Button } from '../../utilities'
 import { Logo } from '../Header/Logo/Logo'
+import { AiFillCheckCircle } from 'react-icons/ai'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -153,6 +154,7 @@ const StepThreeContent = styled.div`
   line-height: 1.4;
 `
 
+// step 4
 const StepFour = styled.div`
   position: absolute;
   top: 28px;
@@ -186,7 +188,6 @@ const StepFourContent = styled.div`
   top: 200px;
   right: 150%;
   width: 400px;
-  /* height: 00px; */
   background-color: white;
   padding: 1rem;
   box-shadow: 0 0 4px 4px black;
@@ -194,6 +195,31 @@ const StepFourContent = styled.div`
   line-height: 1.4;
 `
 
+// step 5
+const Outro = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  max-width: 600px;
+  /* height: 300px; */
+  font-size: 1.1rem;
+  color: ${({ theme }) => theme.colors.black};
+  background-color: #ffeeee;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  box-shadow: 0 0 4px 4px black;
+  text-align: center;
+  border-radius: 4px;
+`
+
+const SuccessIcon = styled(AiFillCheckCircle)`
+  font-size: 3rem;
+  margin: 0 auto;
+`
 export function GuideTour() {
   return (
     <Wrapper>
@@ -223,17 +249,23 @@ export function GuideTour() {
         <StepThreeLine />
         <StepThreeContent>
           <h3>Channels you've joined will appear here. Hang out and spend your time with the people you want by selecting a channel.</h3>
-          <h2></h2>
         </StepThreeContent>
       </StepThree> */}
 
-      <StepFour>
+      {/* <StepFour>
         <StepFourLine />
         <StepFourLineTwo />
         <StepFourContent>
           <h3>See your profile here and update your account's information.</h3>
         </StepFourContent>
-      </StepFour>
+      </StepFour> */}
+
+      <Outro>
+        <SuccessIcon />
+        <Heading>Thank you for your time!</Heading>
+        <Paragraph>We hope the quick guide tour around the application was helpful.</Paragraph>
+        <Paragraph>Have a great time trying our newly born product.</Paragraph>
+      </Outro>
     </Wrapper>
   )
 }
