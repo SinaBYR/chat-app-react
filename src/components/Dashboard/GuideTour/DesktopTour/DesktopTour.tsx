@@ -9,6 +9,10 @@ const Wrapper = styled.div`
   height: 100%;
   background-color: rgb(0, 0, 0, 0.75);
   z-index: 2;
+
+  @media (max-width: 30em) {
+    display: none;
+  }
 `
 
 export function DesktopTour() {
