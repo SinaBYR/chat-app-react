@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   /* justify-content: space-evenly; */
-  max-width: 600px;
+  width: 580px;
   /* height: 300px; */
   font-size: 1.1rem;
   color: ${({ theme }) => theme.colors.black};
@@ -40,8 +40,7 @@ export function StepFive() {
     <Wrapper>
       <SuccessIcon />
       <Heading>Thank you for your time!</Heading>
-      <Paragraph>We hope the quick guide tour around the application was helpful.</Paragraph>
-      <Paragraph>Have a great time trying our newly born product.</Paragraph>
+      <Paragraph>We hope the guide tour was helpful. You can find answers to the questions we get asked the most here. If you have any other question, feel free to ask us in the Help section.</Paragraph>
     </Wrapper>
   )
 }
