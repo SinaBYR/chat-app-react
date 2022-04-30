@@ -23,7 +23,7 @@ const StepThreeContent = styled.div`
   position: absolute;
   top: 150px;
   left: calc(100% + 200px);
-  width: 400px;
+  width: 370px;
   /* height: 200px; */
   background-color: white;
   padding: 1rem;
@@ -37,7 +37,8 @@ export function StepThree() {
     <Wrapper>
       <StepThreeLine />
       <StepThreeContent>
-        <h3>Channels you've joined will appear here. Hang out and spend your time with the people you want by selecting a channel.</h3>
+        <h3>Once you created a channel or joined one, it will appear here. Hang out and spend your time with the people you want by selecting a channel.</h3>
+        <h3></h3>
       </StepThreeContent>
     </Wrapper>
   )
