@@ -33,7 +33,7 @@ export function StepOne() {
   return (
     <Wrapper>
       <Heading>Welcome to the Chat App</Heading>
-      <Paragraph>Hello there :) If you want to learn how this app works, consider taking this quick guide tour which important sections of the Chat App is explained and taught.</Paragraph>
+      <Paragraph>This is a quick guide tour, in which we'll walk you through every section of the Chat App. You'll learn about core features that our app offers, and how to use them.</Paragraph>
       <Button bgColor="black" foreColor="orange">Take the tour</Button>
     </Wrapper>
   )
