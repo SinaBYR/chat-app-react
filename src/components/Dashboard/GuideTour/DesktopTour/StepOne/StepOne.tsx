@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   box-shadow: 0 0 4px 4px black;
   text-align: center;
   border-radius: 4px;
+  z-index: 2;
 `
 
 const Heading = styled.h2`
@@ -47,13 +48,31 @@ const CloseIcon = styled(IoMdClose)`
   }
 `
 
-export function StepOne() {
+const CloseWrapper = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`
+
+interface Props {
+  next: () => void
+}
+
+export function StepOne({ next }: Props) {
+  function closeTourHandler(e: React.MouseEvent<HTMLElement>) {
+    console.log(e.currentTarget.tagName)
+  }
+
   return (
-    <Wrapper>
-      <CloseIcon role="button" tabIndex={1} />
-      <Heading>Welcome to the Chat App</Heading>
-      <Paragraph>This is a quick guide tour, in which we'll walk you through every section of the Chat App. You'll learn about core features that our app offers, and how to use them.</Paragraph>
-      <Button bgColor="black" foreColor="orange" tabIndex={2}>Take the tour</Button>
-    </Wrapper>
+    <CloseWrapper onClick={closeTourHandler}>
+      <Wrapper>
+          <CloseIcon role="button" tabIndex={1} />
+          <Heading>Welcome to the Chat App</Heading>
+          <Paragraph>Thank you for choosing us. This is a quick guide tour, in which we'll walk you through every section of the Chat App. You'll learn about core features that our app offers, and how to use them.</Paragraph>
+          <Button onClick={next} bgColor="black" foreColor="orange" tabIndex={2}>Take the tour</Button>
+      </Wrapper>
+    </CloseWrapper>
   )
 }

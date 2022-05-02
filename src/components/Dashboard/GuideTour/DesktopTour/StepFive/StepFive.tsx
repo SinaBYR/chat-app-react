@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { AiFillCheckCircle } from 'react-icons/ai'
+import { Button } from '../../../../utilities'
 
 const Wrapper = styled.div`
   position: absolute;
@@ -8,12 +9,10 @@ const Wrapper = styled.div`
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
   width: 580px;
-  /* height: 300px; */
-  font-size: 1.1rem;
   color: ${({ theme }) => theme.colors.black};
   background-color: #ffeeee;
+  font-size: 1.1rem;
   padding: 1rem;
   padding-bottom: 2rem;
   box-shadow: 0 0 4px 4px black;
@@ -35,12 +34,21 @@ const Paragraph = styled.p`
   line-height: 1.4;
 `
 
-export function StepFive() {
+interface Props {
+  next: () => void
+}
+
+export function StepFive({ next }: Props) {
   return (
     <Wrapper>
       <SuccessIcon />
       <Heading>Thank you for your time!</Heading>
       <Paragraph>We hope the guide tour was helpful. You can find answers to the questions we get asked the most here. If you have any other question, feel free to ask us in the Help section.</Paragraph>
+      <Button
+        bgColor="black"
+        foreColor="orange"
+        style={{ marginTop: '1rem' }}
+        onClick={next}>Let's get started</Button>
     </Wrapper>
   )
 }

@@ -1,18 +1,17 @@
 import styled from 'styled-components'
+import { Button } from '../../../../utilities'
 
-const StepTwoExploreChannels = styled.div`
+const ExploreChannels = styled.div`
   position: absolute;
   top: 32px;
   right: 310px;
-  /* bottom: 16px; */
   width: 108px;
-  /* height: calc(100% - 118px); */
   height: 40px;
   border: 2px solid white;
   border-radius: 4px;
 `
 
-const StepTwoExploreChannelsLine = styled.div`
+const ExploreChannelsLine = styled.div`
   position: absolute;
   top: 36px;
   left: 50px;
@@ -21,7 +20,7 @@ const StepTwoExploreChannelsLine = styled.div`
   background-color: white;
 `
 
-const StepTwoExploreChannelsLineTwo = styled.div`
+const ExploreChannelsLineTwo = styled.div`
   position: absolute;
   top: 400px;
   left: -200px;
@@ -30,7 +29,7 @@ const StepTwoExploreChannelsLineTwo = styled.div`
   background-color: white;
 `
 
-const StepTwoExploreChannelsContent = styled.div`
+const ExploreChannelsContent = styled.div`
   position: absolute;
   top: 360px;
   right: 292%;
@@ -42,7 +41,7 @@ const StepTwoExploreChannelsContent = styled.div`
   line-height: 1.4;
 `
 
-const StepTwoCreate = styled.div`
+const Create = styled.div`
   position: absolute;
   top: 32px;
   right: 425px;
@@ -52,7 +51,7 @@ const StepTwoCreate = styled.div`
   border-radius: 4px;
   `
 
-const StepTwoCreateLine = styled.div`
+const CreateLine = styled.div`
   position: absolute;
   top: 36px;
   left: 42px;
@@ -60,7 +59,7 @@ const StepTwoCreateLine = styled.div`
   height: 200px;
   background-color: white;
 `
-const StepTwoCreateLineTwo = styled.div`
+const CreateLineTwo = styled.div`
   position: absolute;
   top: 234px;
   left: -156px;
@@ -69,7 +68,7 @@ const StepTwoCreateLineTwo = styled.div`
   background-color: white;
 `
 
-const StepTwoCreateContent = styled.div`
+const CreateContent = styled.div`
   position: absolute;
   top: 190px;
   right: 220%;
@@ -81,24 +80,33 @@ const StepTwoCreateContent = styled.div`
   line-height: 1.4;
 `
 
-export function StepTwo() {
+interface Props {
+  next: () => void
+}
+
+export function StepTwo({ next }: Props) {
   return (
     <>
-      <StepTwoExploreChannels>
-        <StepTwoExploreChannelsLine />
-        <StepTwoExploreChannelsLineTwo />
-        <StepTwoExploreChannelsContent>
+      <ExploreChannels>
+        <ExploreChannelsLine />
+        <ExploreChannelsLineTwo />
+        <ExploreChannelsContent>
           <h3>Explore already existed open-to-join channels and meet new people.</h3>
-        </StepTwoExploreChannelsContent>
-      </StepTwoExploreChannels>
+          <Button
+            bgColor="black"
+            foreColor="white"
+            style={{ marginLeft: 'auto'}}
+            onClick={next}>Next</Button>
+        </ExploreChannelsContent>
+      </ExploreChannels>
 
-      <StepTwoCreate>
-        <StepTwoCreateLine />
-        <StepTwoCreateLineTwo />
-        <StepTwoCreateContent>
+      <Create>
+        <CreateLine />
+        <CreateLineTwo />
+        <CreateContent>
           <h3>Create your own channels and invite people to join.</h3>
-        </StepTwoCreateContent>
-      </StepTwoCreate>
+        </CreateContent>
+      </Create>
     </>
   )
 }

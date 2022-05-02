@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button } from '../../../../utilities'
 
 const Wrapper = styled.div`
   position: absolute;
@@ -24,7 +25,6 @@ const StepThreeContent = styled.div`
   top: 150px;
   left: calc(100% + 200px);
   width: 370px;
-  /* height: 200px; */
   background-color: white;
   padding: 1rem;
   box-shadow: 0 0 4px 4px black;
@@ -32,13 +32,21 @@ const StepThreeContent = styled.div`
   line-height: 1.4;
 `
 
-export function StepThree() {
+interface Props {
+  next: () => void
+}
+
+export function StepThree({ next }: Props) {
   return (
     <Wrapper>
       <StepThreeLine />
       <StepThreeContent>
         <h3>Once you created a channel or joined one, it will appear here. Hang out and spend your time with the people you want by selecting a channel.</h3>
-        <h3></h3>
+        <Button
+          bgColor="black"
+          foreColor="white"
+          style={{ marginLeft: 'auto'}}
+          onClick={next}>Next</Button>
       </StepThreeContent>
     </Wrapper>
   )

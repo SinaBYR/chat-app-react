@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button } from '../../../../utilities'
 
 const Wrapper = styled.div`
   position: absolute;
@@ -40,13 +41,22 @@ const StepFourContent = styled.div`
   line-height: 1.4;
 `
 
-export function StepFour() {
+interface Props {
+  next: () => void
+}
+
+export function StepFour({ next }: Props) {
   return (
     <Wrapper>
       <StepFourLine />
       <StepFourLineTwo />
       <StepFourContent>
         <h3>See your profile here and update your account's information.</h3>
+        <Button
+          bgColor="black"
+          foreColor="white"
+          style={{ marginLeft: 'auto'}}
+          onClick={next}>Next</Button>
       </StepFourContent>
     </Wrapper>
   )
