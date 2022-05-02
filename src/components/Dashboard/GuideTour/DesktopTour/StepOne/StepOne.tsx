@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Button } from '../../../../utilities'
+import { IoMdClose } from 'react-icons/io'
 
 const Wrapper = styled.div`
   position: absolute;
@@ -29,12 +30,30 @@ const Paragraph = styled.p`
   line-height: 1.4;
 `
 
+const CloseIcon = styled(IoMdClose)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.orange};
+  }
+  
+  &:focus {
+    outline: 1px solid black;
+  }
+`
+
 export function StepOne() {
   return (
     <Wrapper>
+      <CloseIcon role="button" tabIndex={1} />
       <Heading>Welcome to the Chat App</Heading>
       <Paragraph>This is a quick guide tour, in which we'll walk you through every section of the Chat App. You'll learn about core features that our app offers, and how to use them.</Paragraph>
-      <Button bgColor="black" foreColor="orange">Take the tour</Button>
+      <Button bgColor="black" foreColor="orange" tabIndex={2}>Take the tour</Button>
     </Wrapper>
   )
 }
