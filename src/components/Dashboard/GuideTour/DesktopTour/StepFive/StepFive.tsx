@@ -45,6 +45,7 @@ export function StepFive({ next }: Props) {
       <Heading>Thank you for your time!</Heading>
       <Paragraph>We hope the guide tour was helpful. You can find answers to the questions we get asked the most here. If you have any other question, feel free to ask us in the Help section.</Paragraph>
       <Button
+        tabIndex={1}
         bgColor="black"
         foreColor="orange"
         style={{ marginTop: '1rem' }}
