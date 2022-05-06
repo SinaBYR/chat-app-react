@@ -1,24 +1,31 @@
 import React, { createContext, useReducer } from "react";
+import { AppActionTypes } from "./app/actions";
+import { appInitialState, appReducer } from "./app/reducer";
+import { AppState } from "./app/types";
 import { AuthActionTypes } from "./auth/actions";
 import { authInitialState, authReducer } from "./auth/reducer";
 import { AuthInitialState } from "./auth/types";
 
-export interface InitialState {
+export interface State {
   auth: AuthInitialState
+  app: AppState
 }
 
-type ActionTypes = AuthActionTypes
+type ActionType = AuthActionTypes | AppActionTypes
 
-const initialState: InitialState = {
-  auth: authInitialState
+const initialState: State = {
+  auth: authInitialState,
+  app: appInitialState
 }
 
-const mainReducer = ({ auth }: InitialState, action: ActionTypes) => ({
-  auth: authReducer(auth, action as AuthActionTypes)
+const mainReducer = ({ auth, app }: State, action: any) => ({
+  auth: authReducer(auth, action as AuthActionTypes),
+  app: appReducer(app, action as AppActionTypes)
 })
 
-export const DispatchContext = createContext<React.Dispatch<ActionTypes>>(() => null)
-export const StateContext = createContext<InitialState | null>(null)
+export const DispatchContext = createContext<React.Dispatch<ActionType>>(() => null)
+// export const DispatchContext = createContext<React.Dispatch<ActionType>>(() => null)
+export const StateContext = createContext<State | null>(null)
 
 export const AppContextProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState)
