@@ -2,7 +2,7 @@ import { ArrowDownIcon, ArrowUpIcon, Lower, PersonIcon, Upper, Username, Wrapper
 import { Button } from '../../../../utilities'
 import { supabase } from '../../../../../supabase/supabase'
 import { useContext, useEffect } from 'react'
-import { DispatchContext, InitialState, StateContext } from '../../../../../store/context'
+import { DispatchContext, State, StateContext } from '../../../../../store/context'
 
 interface Props {
   extended: boolean
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function DesktopUser({ extended, toggleDropdown } : Props) {
-  const { auth } = useContext(StateContext) as InitialState
+  const { auth } = useContext(StateContext) as State
   const dispatch = useContext(DispatchContext)
 
   async function signoutHandler() {

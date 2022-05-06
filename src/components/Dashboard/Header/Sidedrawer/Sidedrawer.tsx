@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { DispatchContext, InitialState, StateContext } from "../../../../store/context";
+import { DispatchContext, State, StateContext } from "../../../../store/context";
 import { supabase } from "../../../../supabase/supabase";
 import { Header, Button, CreateIcon, ExploreIcon, Footer, Main, ProfileIcon, UserIcon, Username, Wrapper, LogoutIcon } from "./SidedrawerStyled";
 
 export function Sidedrawer() {
-  const { auth } = useContext(StateContext) as InitialState
+  const { auth } = useContext(StateContext) as State
   const dispatch = useContext(DispatchContext)
 
   async function signoutHandler() {
