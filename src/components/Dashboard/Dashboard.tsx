@@ -1,6 +1,10 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
+import { AppState } from '../../store/app/types'
+import { State, StateContext } from '../../store/context'
 import { DesktopChannels } from './Channels/DesktopChannels/DesktopChannels'
 import { Feed } from './Feed/Feed'
+import { GuideTour } from './GuideTour/GuideTour'
 import { Header } from './Header/Header'
 
 const Wrapper = styled.div`
@@ -17,11 +21,14 @@ const Wrapper = styled.div`
 `
 
 export function Dashboard() {
+  const { app } = useContext(StateContext) as State
+
   return (
     <Wrapper>
       <Header />
       <DesktopChannels />
       {/* <Feed /> */}
+      {app.firstTime && <GuideTour />}
     </Wrapper>
   )
 }
