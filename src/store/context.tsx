@@ -19,12 +19,11 @@ const initialState: State = {
 }
 
 const mainReducer = ({ auth, app }: State, action: any) => ({
-  auth: authReducer(auth, action as AuthActionTypes),
-  app: appReducer(app, action as AppActionTypes)
+  auth: authReducer(auth, action as AuthActionTypes), // auth slice
+  app: appReducer(app, action as AppActionTypes) // app slice
 })
 
 export const DispatchContext = createContext<React.Dispatch<ActionType>>(() => null)
-// export const DispatchContext = createContext<React.Dispatch<ActionType>>(() => null)
 export const StateContext = createContext<State | null>(null)
 
 export const AppContextProvider: React.FC = ({ children }) => {
