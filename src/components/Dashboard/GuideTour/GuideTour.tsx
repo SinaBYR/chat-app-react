@@ -25,7 +25,9 @@ export function GuideTour() {
         return setStep(4)
       }
       case 4: {
-        return dispatch({ type: 'SET_FIRST_TIME_TO_FALSE' })
+        localStorage.setItem('first-time', 'false')
+        dispatch({ type: 'SET_FIRST_TIME_TO_FALSE' })
+        return
       }
     }
   }
