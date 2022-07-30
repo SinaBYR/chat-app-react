@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components"
 import { BsFillChatRightDotsFill, BsChatLeftQuoteFill, BsChevronDoubleDown } from 'react-icons/bs'
+import { Text } from "../../utilities"
 
 const vibration = keyframes`
   from {
@@ -78,11 +79,6 @@ const Heading = styled.h1`
   }
 `
 
-const Paragraph = styled.p`
-  font-size: 1.4rem;
-  line-height: 1.4;
-`
-
 const MobileOnlyScrollDownAnimation = keyframes`
   0% {
     transform: translateY(-10px);
@@ -110,8 +106,8 @@ export function Showcase() {
       <ChatLogo />
       <TextWrapper>
         <Heading>Chat App</Heading>
-        <Paragraph>Hang out with your friends.</Paragraph>
-        <Paragraph>Join public channels, or create your own.</Paragraph>
+        <Text>Hang out with your friends.</Text>
+        <Text>Join public channels, or create your own.</Text>
       </TextWrapper>
       <MobileOnlyScrollDown>
         <BsChevronDoubleDown />
