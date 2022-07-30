@@ -4,6 +4,7 @@ const Wrapper = styled.footer`
   color: ${({ theme }) => theme.colors.orange};
   padding-bottom: 1rem;
   text-align: center;
+  margin-top: auto;
 
   @media (max-width: 30em) {
     display: none;
