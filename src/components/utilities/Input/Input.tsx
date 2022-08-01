@@ -1,7 +1,11 @@
 import React from "react"
 import styled, { css } from "styled-components"
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{fullWidth?: boolean}>`
+  width: 400px;
+  ${({ fullWidth }) => fullWidth && css`
+    width: 100%;
+  `}
   position: relative;
   margin-bottom: 12px;
   z-index: 0;
@@ -31,11 +35,9 @@ const Error = styled.p`
   border-top: none;
 `
 
-const InputStyled = styled.input<{ fullWidth?: boolean; isError: boolean }>`
+const InputStyled = styled.input<{ isError: boolean }>`
   display: block;
-  ${({ fullWidth }) => fullWidth && css`
-    width: 100%;
-  `}
+  width: 100%;
   font-size: 1.1rem;
   padding: 0.5rem 0.75rem;
   background-color: #f7f7f7;
@@ -65,8 +67,8 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export function Input({ label, name, error, fullWidth, ...rest }: InputProps) {
   return (
-    <Wrapper>
-      <InputStyled fullWidth={fullWidth} name={name} id={name} {...rest} isError={error !== null}/>
+    <Wrapper fullWidth={fullWidth}>
+      <InputStyled name={name} id={name} {...rest} isError={error !== null}/>
       <Label htmlFor={name}>{label}</Label>
       {error && <Error>{error}</Error>}
     </Wrapper>
