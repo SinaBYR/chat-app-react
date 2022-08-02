@@ -25,6 +25,12 @@ const ButtonStyled = styled.button<StyledProps>`
   &:active {
     transform: scale(0.97);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.6;
+  }
 `
 
 export const Button = ({ children, ...props } : ButtonProps) => <ButtonStyled {...props}>{children}</ButtonStyled>
