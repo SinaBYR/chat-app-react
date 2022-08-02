@@ -6,6 +6,8 @@ import { DesktopChannels } from './Channels/DesktopChannels/DesktopChannels'
 import { Feed } from './Feed/Feed'
 import { GuideTour } from './GuideTour/GuideTour'
 import { Header } from './Header/Header'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Create } from './Create/Create'
 
 const Wrapper = styled.div`
   position: relative;
@@ -24,11 +26,20 @@ export function Dashboard() {
   const { app } = useContext(StateContext) as State
 
   return (
-    <Wrapper>
-      <Header />
-      <DesktopChannels />
-      {/* <Feed /> */}
-      {app.firstTime && <GuideTour />}
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <Header />
+        <DesktopChannels />
+        <Switch>
+          <Route path="/create">
+            <Create />
+          </Route>
+          <Route path="/">
+            {/* <Feed /> */}
+            {/* {app.firstTime && <GuideTour />} */}
+          </Route>
+        </Switch>
+      </Wrapper>
+    </Router>
   )
 }
