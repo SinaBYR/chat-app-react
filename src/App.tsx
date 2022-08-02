@@ -1,20 +1,22 @@
 import styled from "styled-components"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Dashboard } from "./components/Dashboard/Dashboard"
 import { Footer } from "./components/Footer/Footer"
 import { Landing } from "./components/Landing/Landing"
-import { DispatchContext, StateContext } from "./store/context"
+import { useDispatch, useSelect } from "./store/hooks"
 import { supabase } from "./supabase/supabase"
-import { State } from './store/context'
 import LoadingOverlay from 'react-loading-overlay-ts'
 
-const AppStyled = styled.div`
+const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 95% 5%;
   align-items: center;
+  max-width: 1280px;
   height: 100%;
+  height: 100vh;
   min-height: 100vh;
   background-color: ${(props) => props.theme.colors.black};
+  margin: 0 auto;
 
   @media (max-width: 30em) {
     grid-template-rows: 1fr;
@@ -22,9 +24,9 @@ const AppStyled = styled.div`
 `
 
 export function App() {
-  const { auth, app } = useContext(StateContext) as State
-  const dispatch = useContext(DispatchContext)
-  const [loading, setLoading] = useState<boolean>(true)
+  const { auth, app } = useSelect();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState<boolean>(true);
   
   useEffect(() => {
     // Checks to see if user has ever been visited our app before.
@@ -73,13 +75,13 @@ export function App() {
 
   return (
     <LoadingOverlay active={loading} spinner>
-      <AppStyled>
+      <Wrapper>
         {auth.session ? <Dashboard /> : <Landing />}
         <Footer />
         {/* <button onClick={signoutHandler}>Logout</button>
         <button onClick={getProfile}>get profile</button>
         <button onClick={updateUsername}>Update username</button> */}
-      </AppStyled>
+      </Wrapper>
     </LoadingOverlay>
   )
 }
