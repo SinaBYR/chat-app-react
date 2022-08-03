@@ -10,7 +10,9 @@ type StyledProps = {
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & StyledProps
 
 const ButtonStyled = styled.button<StyledProps>`
-  display: block;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   ${({ fullWidth }) => fullWidth && css`
     width: 100%;
   `}
