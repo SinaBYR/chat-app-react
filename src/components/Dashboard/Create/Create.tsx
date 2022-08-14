@@ -90,7 +90,7 @@ export function Create() {
         <Input
           type="text"
           name="channelName"
-          label="Channel Name"
+          label="Name"
           data-testid="create-channel-name"
           error={touched.channelName && errors.channelName ? errors.channelName : null}
           value={values.channelName}
@@ -102,7 +102,7 @@ export function Create() {
         <Input
           type="password"
           name="channelPassword"
-          label="Channel Password (optional)"
+          label="Password (optional)"
           data-testid="create-channel-password"
           error={touched.channelPassword && errors.channelPassword ? errors.channelPassword : null}
           value={values.channelPassword}
@@ -114,7 +114,7 @@ export function Create() {
         <Input
           type="password"
           name="channelPasswordConfirm"
-          label="Confirm Channel Password (optional)"
+          label="Confirm Password"
           data-testid="create-channel-password-confirm"
           error={touched.channelPasswordConfirm && errors.channelPasswordConfirm ? errors.channelPasswordConfirm : null}
           value={values.channelPasswordConfirm}
