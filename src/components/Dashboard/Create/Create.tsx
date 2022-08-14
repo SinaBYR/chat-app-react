@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { Button, HTwo, Input, Text } from "../../utilities";
-import { CreteChannelValidationSchema } from "./CreateChannelValidationSchema";
+import { Button, HTwo, Input, Spinner, Text, Callout } from "../../utilities";
+import { validationSchema, initialValues } from "./create-channel-formik";
+import { supabase } from "../../../supabase/supabase";
+import { useSelect } from "../../../store/hooks";
+import { useEffect, useState } from "react";
+import { SuccessIndicator } from "./SuccessIndicator/SuccessIndicator";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -18,27 +22,71 @@ const Form = styled.form`
   margin-top: 2rem;
 `;
 
+const ButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export function Create() {
-  const initialValues = {
-    channelName: '',
-    channelPassword: '',
-    channelPasswordConfirm: ''
-  }
+  const { auth } = useSelect();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [statusCode, setStatusCode] = useState<number|null>(null);
 
-  const { handleChange, handleBlur, handleSubmit, values, touched, errors } = useFormik({
+  let statusCodeTimeout: NodeJS.Timeout | null = null;
+  const { handleChange, handleBlur, handleSubmit, values, touched, errors, isValid } = useFormik({
     initialValues: initialValues,
-    onSubmit: (values, actions) => {
+    onSubmit: async (values, actions) => {
+      setLoading(true);
+      // new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     resolve('hi');
+      //   }, 1500)
+      // }).then(() => {
+      //   setLoading(false);
+      //   setStatusCode(201);
+      //   // actions.resetForm();
+      //   setTimeout(() => {
+      //     setStatusCode(null);
+      //   }, 3000);
+      // })
+      const { data, error, status } = await supabase.from('channels').insert([{
+        name: values.channelName,
+        encrypted_password: values.channelPassword,
+        owner_id: auth.session?.user?.id
+      }]);
+      if(error) {
+        console.log(error);
+      };
+      console.log(data, status);
+      setLoading(false);
+      setStatusCode(status);
+      actions.resetForm();
 
+      statusCodeTimeout = setTimeout(() => {
+        setStatusCode(null);
+      }, 1000);
     },
-    validationSchema: CreteChannelValidationSchema
-  })
+    validationSchema: validationSchema
+  });
+
+  useEffect(() => {
+    return () => {
+      if(statusCodeTimeout) {
+        clearTimeout(statusCodeTimeout);
+      }
+    }
+  }, [])
 
   return (
     <Wrapper>
       <HTwo>New channel</HTwo>
       <Text style={{ fontSize: '1.2rem'}}>Create a brand new channel, customize it, and invite people to join.</Text>
-      <Text style={{ fontSize: '1rem', fontStyle: 'italic', marginTop: '1rem' }}>Note that channel password is optional. Leave it blank if you'd like it to be open to public.</Text>
-      <Form onSubmit={handleSubmit}>
+      <Callout style={{margin: '1rem 0'}}>
+        <Text style={{ fontSize: '1rem', fontStyle: 'italic', marginLeft: '1rem' }}>
+          Note that channel password is optional. Leave it blank if you'd like this channel to be open to public.
+        </Text>
+      </Callout>
+      <Form onSubmit={handleSubmit} autoComplete="off">
         <Input
           type="text"
           name="channelName"
@@ -48,31 +96,41 @@ export function Create() {
           value={values.channelName}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder=" "/>
+          placeholder=" "
+          autoComplete="off"/>
         <br />
         <Input
           type="password"
           name="channelPassword"
-          label="Channel Password"
+          label="Channel Password (optional)"
           data-testid="create-channel-password"
           error={touched.channelPassword && errors.channelPassword ? errors.channelPassword : null}
           value={values.channelPassword}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder=" "/>
+          placeholder=" "
+          autoComplete="off"/>
         <br />
         <Input
           type="password"
           name="channelPasswordConfirm"
-          label="Confirm Channel Password"
+          label="Confirm Channel Password (optional)"
           data-testid="create-channel-password-confirm"
           error={touched.channelPasswordConfirm && errors.channelPasswordConfirm ? errors.channelPasswordConfirm : null}
           value={values.channelPasswordConfirm}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder=" "/>
+          placeholder=" "
+          autoComplete="false"/>
         <br />
-        <Button type="submit" bgColor="orange" foreColor="black">{false ? 'Loading' : 'Create channel'}</Button>
+        <ButtonGroup>
+          <Button
+            type="submit"
+            bgColor="orange"
+            foreColor="black"
+            disabled={!isValid || loading || statusCode !== null}>{loading ? (<><Spinner style={{marginRight: '8px'}}/> <span>Create channel</span></>) : 'Create channel'}</Button>
+          {!loading && statusCode === 201 && <SuccessIndicator />}
+        </ButtonGroup>
       </Form>
     </Wrapper>
   )

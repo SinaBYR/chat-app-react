@@ -1,6 +1,12 @@
 import * as yup from 'yup'
 
-export const CreteChannelValidationSchema = yup.object().shape({
+export const initialValues = {
+  channelName: '',
+  channelPassword: '',
+  channelPasswordConfirm: ''
+};
+
+export const validationSchema = yup.object().shape({
   channelName: yup.string().required('This is a required field'),
   channelPassword: yup
     .string()
