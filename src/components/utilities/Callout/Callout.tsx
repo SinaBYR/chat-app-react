@@ -5,7 +5,7 @@ import styled from "styled-components";
 const CalloutWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 770px;
+  max-width: 770px;
   color: ${({ theme }) => theme.colors.white};
   background-color: #252525;
   padding: 1rem;
