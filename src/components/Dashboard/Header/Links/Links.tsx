@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button } from '../../../utilities'
+import { Link } from '../../../utilities'
 
 const UnorderedList = styled.ul`
   display: flex;
@@ -22,10 +22,10 @@ export function Links() {
   return (
     <UnorderedList>
       <ListItem>
-        <Button bgColor="black" foreColor="orange">Create</Button>
+        <Link to="/create" $bgColor="black" $foreColor="orange">Create</Link>
       </ListItem>
       <ListItem>
-        <Button bgColor="black" foreColor="orange">Channels</Button>
+        <Link to="/" $bgColor="black" $foreColor="orange">Channels</Link>
       </ListItem>
     </UnorderedList>
   )
