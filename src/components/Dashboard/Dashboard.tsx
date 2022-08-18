@@ -1,7 +1,5 @@
-import { useContext } from 'react'
 import styled from 'styled-components'
-import { AppState } from '../../store/app/types'
-import { State, StateContext } from '../../store/context'
+import { useSelect } from '../../store/hooks'
 import { DesktopChannels } from './Channels/DesktopChannels/DesktopChannels'
 import { Feed } from './Feed/Feed'
 import { GuideTour } from './GuideTour/GuideTour'
@@ -23,7 +21,7 @@ const Wrapper = styled.div`
 `
 
 export function Dashboard() {
-  const { app } = useContext(StateContext) as State
+  const { app } = useSelect();
 
   return (
     <Router>
