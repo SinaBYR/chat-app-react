@@ -1,8 +1,9 @@
 import { ArrowDownIcon, ArrowUpIcon, Lower, PersonIcon, Upper, Username, Wrapper } from './DesktopUserStyled'
 import { Button } from '../../../../utilities'
 import { supabase } from '../../../../../supabase/supabase'
-import { useContext, useEffect } from 'react'
-import { DispatchContext, State, StateContext } from '../../../../../store/context'
+import { useContext } from 'react'
+import { DispatchContext } from '../../../../../store/context'
+import { useSelect } from '../../../../../store/hooks'
 
 interface Props {
   extended: boolean
@@ -10,7 +11,7 @@ interface Props {
 }
 
 export function DesktopUser({ extended, toggleDropdown } : Props) {
-  const { auth } = useContext(StateContext) as State
+  const { auth } = useSelect();
   const dispatch = useContext(DispatchContext)
 
   async function signoutHandler() {
