@@ -16,6 +16,12 @@ const Wrapper = styled.div`
   color: ${({ theme }) => theme.colors.white};
   background-color: #15171a;
   padding: 1rem;
+
+  @media only screen and (max-width: 600px) {
+    position: static;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Form = styled.form`
@@ -54,14 +60,17 @@ export function Create() {
         encrypted_password: values.channelPassword,
         owner_id: auth.session?.user?.id
       }]);
+
       if(error) {
         console.log(error);
       };
-      console.log(data, status);
+
       setLoading(false);
       setStatusCode(status);
       actions.resetForm();
 
+      // this timeout is used to animate a success indicator next to submit button.
+      // it'll be cleared once the component unmounts.
       statusCodeTimeout = setTimeout(() => {
         setStatusCode(null);
       }, 1000);
