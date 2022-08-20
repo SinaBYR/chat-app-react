@@ -5,11 +5,11 @@ const successAnimation = keyframes`
   10% {
     opacity: 0;
   }
-  25% {
+  35% {
     opacity: 1;
     transform: translateX(0);
   }
-  95% {
+  80% {
     opacity: 1;
     transform: translateX(0);
   }
@@ -22,7 +22,7 @@ const successAnimation = keyframes`
 const Wrapper = styled.div`
   opacity: 0;
   transform: translateX(-40px);
-  animation: ${successAnimation} 3000ms forwards;
+  animation: ${successAnimation} 2500ms forwards;
 `;
 
 const SuccessIcon = styled(MdDone)`
