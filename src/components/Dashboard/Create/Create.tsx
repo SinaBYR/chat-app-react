@@ -55,11 +55,11 @@ export function Create() {
       //     setStatusCode(null);
       //   }, 3000);
       // })
-      const { data, error, status } = await supabase.from('channels').insert([{
-        name: values.channelName,
-        encrypted_password: values.channelPassword,
-        owner_id: auth.session?.user?.id
-      }]);
+      const { data, error, status } = await supabase.rpc('create_channel' ,{
+        channel_name_: values.channelName,
+        channel_password_: values.channelPassword,
+        channel_owner_id_: auth.session?.user?.id
+      });
 
       if(error) {
         console.log(error);
