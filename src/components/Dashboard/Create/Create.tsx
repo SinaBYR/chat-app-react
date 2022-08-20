@@ -49,12 +49,13 @@ export function Create() {
       //   }, 1500)
       // }).then(() => {
       //   setLoading(false);
-      //   setStatusCode(201);
+      //   setStatusCode(200);
       //   // actions.resetForm();
       //   setTimeout(() => {
       //     setStatusCode(null);
       //   }, 3000);
       // })
+
       const { data, error, status } = await supabase.rpc('create_channel' ,{
         channel_name_: values.channelName,
         channel_password_: values.channelPassword,
@@ -62,18 +63,20 @@ export function Create() {
       });
 
       if(error) {
-        console.log(error);
+        return console.log(error);
       };
 
       setLoading(false);
       setStatusCode(status);
       actions.resetForm();
 
+      console.log(data, status)
+
       // this timeout is used to animate a success indicator next to submit button.
       // it'll be cleared once the component unmounts.
       statusCodeTimeout = setTimeout(() => {
         setStatusCode(null);
-      }, 1000);
+      }, 3000);
     },
     validationSchema: validationSchema
   });
@@ -138,7 +141,7 @@ export function Create() {
             bgColor="orange"
             foreColor="black"
             disabled={!isValid || loading || statusCode !== null}>{loading ? (<><Spinner style={{marginRight: '8px'}}/> <span>Create channel</span></>) : 'Create channel'}</Button>
-          {!loading && statusCode === 201 && <SuccessIndicator />}
+          {!loading && statusCode === 200 && <SuccessIndicator />}
         </ButtonGroup>
       </Form>
     </Wrapper>
