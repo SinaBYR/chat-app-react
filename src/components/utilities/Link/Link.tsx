@@ -2,22 +2,22 @@ import styled, { css } from "styled-components";
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
 type StyledProps = {
-  $bgColor: 'orange' | 'black' | 'white' | 'red';
-  $foreColor: 'orange' | 'black' | 'white';
+  // Each custom prop is optional, because they've got default value.
+  $bgColor?: 'orange' | 'black' | 'white' | 'red';
+  $foreColor?: 'orange' | 'black' | 'white';
   $fullWidth?: boolean
-}
+};
 
 type LinkProps = RouterLinkProps & StyledProps;
 
-const LinkWrapper = styled(RouterLink)<StyledProps>`
+const LinkWrapper = styled(RouterLink)<StyledProps >`
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
   ${({ $fullWidth }) => $fullWidth && css`
     width: 100%;
   `};
-  color: ${({theme, $foreColor}) => theme.colors[$foreColor]};
-  background-color: ${({theme, $bgColor}) => theme.colors[$bgColor]};
+  color: ${({theme, $foreColor}) => $foreColor && theme.colors[$foreColor]};
+  background-color: ${({theme, $bgColor}) => $bgColor && theme.colors[$bgColor]};
   font-size: 1rem;
   padding: 0.65rem 1rem;
   border: none;
@@ -41,7 +41,13 @@ const LinkWrapper = styled(RouterLink)<StyledProps>`
 // Transient props are a new pattern to pass props that are explicitly consumed only by styled components and are not meant to be passed down to deeper component layers.
 // Note the dollar sign ($) prefix on the prop; this marks it as transient and styled-components knows not to add it to the rendered DOM element or pass it further down the component hierarchy.
 
-export function Link({ children, $foreColor, $bgColor, $fullWidth, ...props }: LinkProps) {
+export function Link({
+  children,
+  $foreColor = "black",
+  $bgColor = "orange",
+  $fullWidth,
+  ...props
+}: LinkProps) {
   return (
     <LinkWrapper $foreColor={$foreColor} $bgColor={$bgColor} $fullWidth={$fullWidth} {...props}>{children}</LinkWrapper>
   )
