@@ -25,10 +25,6 @@ const LinkWrapper = styled(RouterLink)<StyledProps >`
   cursor: pointer;
   text-decoration: none;
 
-  &:active {
-    transform: scale(0.97);
-  }
-
   &:disabled {
     cursor: not-allowed;
     transform: none;
