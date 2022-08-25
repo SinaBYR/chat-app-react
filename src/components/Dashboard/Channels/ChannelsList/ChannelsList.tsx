@@ -19,6 +19,12 @@ const Items = styled.div`
       background: rgba(255,255,255,0.3);
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    & > * {
+      margin-bottom: 1rem;
+    }
+  }
 `;
 
 export function ChannelsList() {
