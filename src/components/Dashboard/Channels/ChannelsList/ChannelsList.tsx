@@ -5,7 +5,7 @@ import { Link, Spinner } from '../../../utilities';
 const Items = styled.div`
   height: calc(100% - 48px);
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 0.75rem;
 
   &::-webkit-scrollbar {
     width: 0.25em;
@@ -42,6 +42,7 @@ export function ChannelsList() {
               textAlign: 'left',
               overflowX: 'hidden'
             }}
+            $navLink
             $foreColor="orange"
             to={"/" + id}
             key={id}
