@@ -15,7 +15,9 @@ export function useChannels() {
     });
     setLoading(false);
 
-    dispatch({ type: 'STORE_CHANNELS', payload: data });
+    if(data?.length) {
+      dispatch({ type: 'STORE_CHANNELS', payload: data });
+    }
     console.log(data);
     console.log(error);
   };
