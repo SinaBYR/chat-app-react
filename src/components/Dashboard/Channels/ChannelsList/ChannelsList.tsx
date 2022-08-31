@@ -26,15 +26,19 @@ const Items = styled.div`
 `;
 
 export function ChannelsList() {
-  const { channels, loading} = useChannels();
+  const { channels, loading } = useChannels();
 
   if(loading) {
     return <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}><Spinner /></div>;
   };
 
+  const sortedChannels = channels.sort((a, b) => {
+    return a.joined_at < b.joined_at ? 1 : -1;
+  })
+
   return (
     <Items>
-      {channels?.map(({ id, name }) => {
+      {sortedChannels.map(({ id, name }) => {
         return (
           <Link
             style={{
