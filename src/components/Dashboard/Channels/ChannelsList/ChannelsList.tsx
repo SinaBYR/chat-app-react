@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useChannels } from '../../../../hooks/useChannels';
+import { useChannels } from '../../../../hooks';
 import { Link, Spinner } from '../../../utilities';
 
 const Items = styled.div`
