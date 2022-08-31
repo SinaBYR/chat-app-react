@@ -23,7 +23,16 @@ export function useChannels() {
   };
 
   useEffect(() => {
+    const subscription = supabase
+      .from('membership')
+      .on('*', (_payload) => fetchChannels())
+      .subscribe();
+
     fetchChannels();
+
+    return () => {
+      subscription.unsubscribe();
+    }
   }, []);
 
   const channels = app.channels;
