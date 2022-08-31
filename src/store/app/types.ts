@@ -8,5 +8,5 @@ export interface Channel {
 
 export interface AppState {
   firstTime: boolean;
-  channels: Channel[] | null
+  channels: Channel[]
 };
