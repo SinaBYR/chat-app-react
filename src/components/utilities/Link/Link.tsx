@@ -74,7 +74,7 @@ export function Link({
   ...props
 }: LinkProps) {
   if($navLink) {
-    return <NavLinkWrapper $foreColor={$foreColor} $bgColor={$bgColor} $fullWidth={$fullWidth} activeClassName="active" {...props}>{children}</NavLinkWrapper>
+    return <NavLinkWrapper $foreColor={$foreColor} $bgColor={$bgColor} $fullWidth={$fullWidth} {...props}>{children}</NavLinkWrapper>
   }
 
   return (
