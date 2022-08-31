@@ -3,7 +3,7 @@ import { AppState } from './types'
 
 export const appInitialState: AppState = {
   firstTime: true,
-  channels: null
+  channels: []
 }
 
 export function appReducer(state: AppState = appInitialState, action: AppActionTypes): AppState {
