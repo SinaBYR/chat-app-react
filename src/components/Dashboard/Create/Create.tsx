@@ -17,18 +17,6 @@ export function Create() {
     initialValues: initialValues,
     onSubmit: async (values, actions) => {
       setLoading(true);
-      // new Promise((resolve, reject) => {
-      //   setTimeout(() => {
-      //     resolve('hi');
-      //   }, 1500)
-      // }).then(() => {
-      //   setLoading(false);
-      //   setStatusCode(200);
-      //   // actions.resetForm();
-      //   setTimeout(() => {
-      //     setStatusCode(null);
-      //   }, 3000);
-      // })
 
       const { data, error, status } = await supabase.rpc('create_channel' ,{
         channel_name_: values.channelName,
@@ -36,14 +24,14 @@ export function Create() {
         channel_owner_id_: auth.session?.user?.id
       });
 
+      setLoading(false);
+      setStatusCode(status);
+      
       if(error) {
         return console.log(error);
       };
 
-      setLoading(false);
-      setStatusCode(status);
       actions.resetForm();
-
       console.log(data, status)
 
       // this timeout is used to animate a success indicator next to submit button.
@@ -61,7 +49,7 @@ export function Create() {
         clearTimeout(statusCodeTimeout);
       }
     }
-  }, [])
+  }, []);
 
   return (
     <Wrapper>
