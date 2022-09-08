@@ -53,4 +53,5 @@ export const Wrapper = styled.div<Props>`
   box-shadow: 0 0 4px black;
   border-radius: 4px;
   white-space: pre-wrap;
+  word-wrap: break-word;
 `;
