@@ -15,7 +15,7 @@ export function useChannels() {
     });
     setLoading(false);
 
-    if(data?.length) {
+    if(Array.isArray(data)) {
       dispatch({ type: 'STORE_CHANNELS', payload: data });
     }
     console.log(data);
