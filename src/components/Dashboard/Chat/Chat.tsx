@@ -1,7 +1,7 @@
-import { ChatBox, Wrapper } from './ChatStyled';
+import { Wrapper } from './ChatStyled';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
-import { Message } from './Message/Message';
-import { InputBox } from './InputBox/InputBox';
+import { ChatMessages } from './ChatMessages/ChatMessages';
+import { ChatTextArea } from './ChatTextArea/ChatTextArea';
 
 export function Chat() {
   const [chats, setChats] = useState<any[]>([
@@ -29,13 +29,8 @@ export function Chat() {
 
   return (
     <Wrapper>
-      <ChatBox>
-        {chats.map((msg, i) => (
-          <Message key={i} text={msg} me={false}/>
-        ))}
-        <Message text="Hello everybody!" me={true} />
-      </ChatBox>
-      <InputBox
+      <ChatMessages chats={chats}/>
+      <ChatTextArea
         value={message}
         onKeyPress={keyPressHandler}
         onChange={changeHandler}

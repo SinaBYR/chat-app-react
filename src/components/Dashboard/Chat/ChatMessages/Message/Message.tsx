@@ -1,4 +1,4 @@
-import { Text } from "../../../utilities";
+import { Text } from "../../../../utilities";
 import { Wrapper, Time, Username } from "./MessageStyled";
 
 interface Props {
