@@ -11,7 +11,6 @@ export function Chat() {
   ]);
   const [message, setMessage] = useState<string>('');
   
-
   function keyPressHandler(e: KeyboardEvent<HTMLTextAreaElement>) {
     if(e.code === 'Enter' && e.ctrlKey) {
       const newChats = [...chats];

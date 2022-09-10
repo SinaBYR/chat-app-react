@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useSelect } from '../../store/hooks';
 import { DesktopChannels } from './Channels/DesktopChannels/DesktopChannels';
-import { Feed } from './Feed/Feed';
+import { Chat } from './Chat/Chat';
 import { GuideTour } from './GuideTour/GuideTour';
 import { Header } from './Header/Header';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -31,17 +31,16 @@ export function Dashboard() {
       <Wrapper>
         <Header />
         {/* DesktopChannels and MobileChannels make two unnecessary requests to fetch channels */}
-        {!isMobile && <DesktopChannels />}
+        {/* {!isMobile && <DesktopChannels />} */}
         <Routes>
-          {/* <Route path="/">
-            
-            <Feed />
-            {app.firstTime && <GuideTour />}
-          </Route> */}
+          <Route path="/:channelId" element={<Chat />}/>
           <Route path="/create" element={<Create />} />
           <Route path="/" element={
             <>
+              {/* {app.firstTime && <GuideTour />} */}
               {isMobile && <MobileChannels />}
+              {/* <Feed /> */}
+              <h2>No chat selected.</h2>
             </>
           } />
         </Routes>
