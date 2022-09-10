@@ -18,15 +18,14 @@ export const Textarea = styled.textarea`
   position: absolute;
   left: 8px;
   bottom: 0;
-  width: 884px;
   width: 540px;
   transform: translateY(-9px);
   height: 40px;
   max-height: 8rem;
-  color: gray;
+  color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.black};
   background-color: #15171a;
-  /* background-color: gray; */
+  /* background-color: #646464; */
   font-size: 1rem;
   padding: 0.5rem;
   /* margin-left: auto; */
@@ -36,12 +35,11 @@ export const Textarea = styled.textarea`
   word-break: break-word;
   resize: none;
   line-height: 1.4rem;
-  overflow-y: auto;
-  border: none;
+  /* overflow-y: auto; */
+  border: 1px solid #646464;
 
   &:focus-visible {
     outline: 1px solid ${({ theme }) => theme.colors.white};
-    /* border: 1px solid ${({ theme }) => theme.colors.white}; */
   }
 `;
 
