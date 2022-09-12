@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components";
 
 interface Props {
-  me: boolean;
+  isMe: boolean;
 }
 
 export const Username = styled.div<Props>`
   position: absolute;
   top: -25px;
   left: 0;
-  ${({ me }) => me && css`
+  ${({ isMe }) => isMe && css`
     display: none;
   `}
   width: 180px;
@@ -27,7 +27,7 @@ export const Time = styled.div<Props>`
   font-style: italic;
   opacity: 0.7;
 
-  ${({ me }) => me && css`
+  ${({ isMe }) => isMe && css`
     left: auto;
     color: ${({ theme }) => theme.colors.black};
     opacity: 0.9;
@@ -41,7 +41,7 @@ export const Wrapper = styled.div<Props>`
   min-width: 100px;
   color: ${({ theme }) => theme.colors.white};
   background-color: #2b2e35;
-  ${({ me }) => me && css`
+  ${({ isMe }) => isMe && css`
     align-self: flex-end;
     color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.orange};
