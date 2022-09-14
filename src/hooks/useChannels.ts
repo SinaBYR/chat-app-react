@@ -18,8 +18,8 @@ export function useChannels() {
     if(Array.isArray(data)) {
       dispatch({ type: 'STORE_CHANNELS', payload: data });
     }
-    console.log(data);
-    console.log(error);
+    // console.log(data);
+    // console.log(error);
   };
 
   useEffect(() => {

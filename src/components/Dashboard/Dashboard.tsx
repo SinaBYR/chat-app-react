@@ -25,13 +25,17 @@ const Wrapper = styled.div`
 export function Dashboard() {
   const { app } = useSelect();
   const isMobile = useMediaQuery('(max-width: 600px)');
+  
+  // console.log(window.navigator.onLine);
+  // window.addEventListener('online', () => console.log('We online.'))
+  // window.addEventListener('offline', () => console.log('We offline.'))
 
   return (
     <Router>
       <Wrapper>
         <Header />
         {/* DesktopChannels and MobileChannels make two unnecessary requests to fetch channels */}
-        {/* {!isMobile && <DesktopChannels />} */}
+        {!isMobile && <DesktopChannels />}
         <Routes>
           <Route path="/:channelId" element={<Chat />}/>
           <Route path="/create" element={<Create />} />
