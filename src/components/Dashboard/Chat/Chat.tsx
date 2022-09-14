@@ -5,20 +5,12 @@ import { ChatTextArea } from './ChatTextArea/ChatTextArea';
 import { supabase } from '../../../supabase/supabase';
 import { useParams } from 'react-router-dom'
 import { useSelect } from '../../../store/hooks';
-
-interface Message {
-  id: string;
-  channel_id: string;
-  content: string;
-  sender_id: string;
-  sender_username: string;
-  sent_at: string;
-}
+import { MessageObject } from '../../../types';
 
 export function Chat() {
-  const { auth, app } = useSelect();
-  const [messages, setMessages] = useState<Message[]>([]);
+  const { auth } = useSelect();
   const [message, setMessage] = useState<string>('');
+  const [messages, setMessages] = useState<MessageObject[]>([]);
   const params = useParams();
 
   async function addNewMessage(payload: any) {
@@ -27,6 +19,7 @@ export function Chat() {
       .select('username')
       .eq('id', payload.sender_id);
     
+      console.log(data)
     if(error) {
       return console.log(error.message);
     }
@@ -35,28 +28,25 @@ export function Chat() {
       return;
     }
 
-    setMessages((prevState) => {
+    setMessages(prevState => {
+      const newMessagesArray = [...prevState];
+      const newMessage: MessageObject = {
+        ...payload,
+        sender_username: data[0].username
+      };
+      newMessagesArray.push(newMessage);
       return [
         ...prevState,
-        {
-          ...payload,
-          sender_username: data[0].username
-        }
+        newMessage
       ]
     })
   }
 
   async function sendMessage() {
-    // const { error } = await supabase.rpc('send_message', {
-    //   content_: message,
-    //   sender_id_: auth.session?.user?.id,
-    //   channel_id_: params.channelId
-    // })
-
-    const { error } = await supabase.from('message').insert({
-      content: message,
-      sender_id: auth.session?.user?.id,
-      channel_id: params.channelId
+    const { error } = await supabase.rpc('send_message', {
+      content_: message,
+      sender_id_: auth.session?.user?.id,
+      channel_id_: params.channelId
     })
 
     if(error) {
@@ -65,7 +55,7 @@ export function Chat() {
   }
 
   async function fetchMessages() {
-    const { data, error } = await supabase.rpc<Message>('fetch_messages', {
+    const { data, error } = await supabase.rpc<MessageObject>('fetch_messages', {
       channel_id_: params.channelId
     })
 
@@ -75,7 +65,6 @@ export function Chat() {
 
     if(Array.isArray(data)) {
       setMessages(data);
-      console.log(data);
     }
   }
 
@@ -96,7 +85,7 @@ export function Chat() {
     // listen to message table changes
     const subscription = supabase
       .from('message')
-      .on('INSERT', (payload) => {
+      .on('*', (payload) => {
         addNewMessage(payload.new);
       })
       .subscribe();
@@ -114,7 +103,7 @@ export function Chat() {
 
   return (
     <Wrapper>
-      <ChatMessages chats={messages}/>
+      <ChatMessages messages={messages}/>
       <ChatTextArea
         value={message}
         onKeyPress={keyPressHandler}
