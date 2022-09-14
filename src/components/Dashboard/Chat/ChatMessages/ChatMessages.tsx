@@ -1,13 +1,28 @@
+import { useSelect } from "../../../../store/hooks";
+import { MessageObject } from "../../../../types";
 import { Wrapper } from "./ChatMessagesStyled";
 import { Message } from "./Message/Message";
 
-export function ChatMessages({ chats }: { chats: any }) {
+export function ChatMessages({ messages }: { messages: MessageObject[] }) {
+  const { auth } = useSelect();
+
   return (
     <Wrapper>
-      {chats.map((msg: string, i: number) => (
-        <Message key={i} text={msg} me={false}/>
+      {messages.map(({
+        id,
+        content,
+        sender_id,
+        sender_username,
+        sent_at
+      }) => (
+        <Message
+          key={id}
+          content={content}
+          username={sender_username}
+          isMe={sender_id === auth.session?.user?.id}
+          sent_at={sent_at}
+          />
       ))}
-      <Message text="Hello everybody!" me={true} />
     </Wrapper>
   )
 }

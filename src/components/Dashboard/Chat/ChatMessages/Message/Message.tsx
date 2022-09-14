@@ -2,16 +2,18 @@ import { Text } from "../../../../utilities";
 import { Wrapper, Time, Username } from "./MessageStyled";
 
 interface Props {
-  text: string;
-  me: boolean;
+  content: string;
+  isMe: boolean;
+  username: string;
+  sent_at: string;
 }
 
-export function Message({ text, me }: Props) {
+export function Message({ content, username, sent_at, isMe }: Props) {
   return (
-    <Wrapper me={me}>
-      <Username me={me}>Boogyman_coming_back</Username>
-      <Text style={{ fontSize: '1rem' }}>{text}</Text>
-      <Time me={me}>7:23 PM</Time>
+    <Wrapper isMe={isMe}>
+      <Username isMe={isMe}>{username}</Username>
+      <Text style={{ fontSize: '1rem' }}>{content}</Text>
+      <Time isMe={isMe}>{sent_at}</Time>
     </Wrapper>
   )
 }
